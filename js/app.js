@@ -1,7 +1,7 @@
 ////// Strategic game
 ////// 6 x 6 grid 
 ////// Player moves across the squares, but each time you move the computer randomly turns
-////// You need to avoid being caught by the computer who may turn towards you. If your in the square next to the computer then your caught and the game is over.
+////// You need to avoid being caught by the computer who may turn towards you. If your in the square next to the computer then your caugt and the game is over.
 ///// Need to add a randomiser onto the player move which means that the computer chooses one of 4 div classes.
 
 //// The game is created as an object
@@ -11,29 +11,30 @@ $(function(){
 
  game.computer = $(".computer").attr("class");
  game.obstacle = $(".obstacle").attr("class");
+ game.player = $(".player").attr("class");
  game.moveCounter = 0;
  game.truthy = true;
- game.currentPosition = 9;
+ game.currentPosition = 0;
+ game.$squares = $('li');
 
  game.playerMove = function playerMove(){
-  // Click event is set up to listen on all li's on the page.
-  $("li").on("click", function(){
-  // If a li is clicked that contains the class of the computer
+
+  // $("li").on("click", function(){
+
   // if ($(this).attr("class") === game.computer){
   //   alert("You can't move here.");
   // } else if ($(this).attr("class") === game.obstacle) {
   //   alert("You can't move here.");
   // } else {
-  // Else add the class 'player' to that spot and remove it from the currently existing one
-   // if (this.id == 3 || this.id == 8 || this.id == 10 || this.id == 15)
-   if (this.id == game.currentPosition + 1 || this.id == game.currentPosition - 1 || this.id == game.currentPosition + 6 || this.id == game.currentPosition - 6)
-   { $(this).addClass('player').siblings('li').removeClass('player');
+
+  //  if (this.id == game.currentPosition + 1 || this.id == game.currentPosition - 1 || this.id == game.currentPosition + 6 || this.id == game.currentPosition - 6)
+  //  { $(this).addClass('player').siblings('li').removeClass('player');
    
-    game.currentPosition = this.id;
-    console.log(this.id);
-  } 
+  //   game.currentPosition = this.id;
+  //   console.log(this.id);
+  // } 
   
-  })
+  // })
 
 
   var borders = {
@@ -43,10 +44,31 @@ $(function(){
     left : [0,6,12,18,24,30]
   }
 
-  // $('body').on("keyup", function(event) {
-  //   event.preventDefault();
-  //   console.log(event);
+  // var code = e.keyCode || e.which;
+  // if(code == 13) { //Enter keycode
+  //   //Do something
+  // }
+$('body').on("keyup", function(e) {
+    event.preventDefault();
+    if (e.which === 38) {
+      console.log("up"); 
+    } else if (e.which === 39) {
+      console.log("right");
+      game.currentPosition+=1;
+      var position = game.$squares[game.currentPosition];
+      $(position).addClass("player").siblings('li').removeClass('player');
+      console.log(game.currentPosition);
+    } else if (e.which === 40) {
+      console.log("down");
+    } else if (e.which === 37) {
+      console.log("left");
+      game.currentPosition-=1;
+      console.log(game.currentPosition);
+    }
+  })
+
   //   if (e.which === 97) {
+
   //     $(this).addClass('player').siblings('li').removeClass('player');
   //     // check position isnt in borders.left
   //     currentPosition-=1;
