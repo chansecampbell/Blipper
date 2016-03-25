@@ -11,23 +11,36 @@
   background-color: blue;
 }*/
 
-.player {
-  background-color: blue;
-}
 
-.exit {
-  background-color: black;
+
+.floor {
+  
 }
 
 ul {
   width: 600px;
   height: 800px;
+  background-image: url('https://s-media-cache-ak0.pinimg.com/736x/e8/85/0a/e8850a26cdef4cb4352801a4f9de7445.jpg');
+  background-size: contain;
+  background-size: 10%;
 }
 
 li {
   width: 98px;
   height: 98px;
   float: left;
-  border: 1px solid black;
+  border: 1px solid darkgray;
   list-style-type: none;
+ /* background-image: url('https://s-media-cache-ak0.pinimg.com/736x/e8/85/0a/e8850a26cdef4cb4352801a4f9de7445.jpg');
+  background-size: cover;*/
+}
+
+.player {
+  background-image: url('http://orig08.deviantart.net/f8ee/f/2012/065/d/0/farengar_sprite_by_valdrec-d4rz8rs.png');
+  background-size: cover;
+}
+
+.exit {
+  background-image: none;
+  background-color: black;
 }
