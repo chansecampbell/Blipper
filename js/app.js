@@ -7,37 +7,46 @@
 ////// Your goal is to strategically make your way across the screen bottom to top and escape the horror house.
 ///// You either have to be strategic with your moves to survive but you are also rewarded for the less moves you can complete the level within.
 
-//// Dom content is loaded
+//// The game is created as an object
+var game = game || {};
+
 $(function(){
 
-  // $.fn.toggle2classes = function(class1, class2){
-  //   if( !class1 || !class2 )
-  //     return this;
+// The zombie is added to a variable by it's class
+ game.zombie = $(".zombie").attr("class");
+ game.obstacle = $(".boulder").attr("class");
 
-  //   return this.each(function(){
-  //     var $elm = $(this);
 
-  //     if( $elm.hasClass(class1) || $elm.hasClass(class2) )
-  //       $elm.toggleClass(class1 +' '+ class2);
 
-  //     else
-  //       $elm.addClass(class1);
-  //   });
-  // };
-
-/// Click event is set up to listen on all li's on the page.
-$('li').on("click", function(){
-  var clickedId= $(this).attr("class");
-  // var hello = $('li').class();
-  // (console.log(hello));
-  // Whichever li is clicked, add the class 'player' to it and remove it from the currently existing one
- $(this).addClass('player').removeClass('floor');
- $(this).next('li').removeClass('player');
- // $('li').toggle2classes('player', clickedId);
+ game.playerMove = function playerMove(){
+  // Click event is set up to listen on all li's on the page.
+  $("li").on("click", function(){
+  // If a li is clicked that contains the class of zombie then don't allow it
+  if ($(this).attr("class") === game.zombie){
+    alert("The zombie eats your brains. You're dead.");
+  } else if ($(this).attr("class") === game.obstacle) {
+    alert("You can't go here.");
+  } else {
+  // Else add the class 'player' to that spot and remove it from the currently existing one
+   $(this).addClass('player');
+   $(this).siblings('li').removeClass('player');
+   console.log(this);
+ }
 })
+}
 
 
- })
+// game.whichSquare = function whichSquare(){
+//   if (this.playerMove.class("zombie.player")) {
+//     console.log("hello world");
+//   }
+//   game.whichSquare();
+
+// }
+
+game.playerMove();
+
+})
 
 /// Need to plan what happens as a consequence of the click? 
 // These are the potential outcomes:
@@ -61,6 +70,41 @@ $('li').on("click", function(){
 
 
 
+
+
+// var $div = $('div');
+// $(document).keydown(function(e) {
+//     switch (e.which) {
+//     case 37:
+//         $div.css('left', $div.offset().left - 10);
+//         break;
+//     case 38:
+//         $div.css('top', $div.offset().top - 10);
+//         break;
+//     case 39:
+//         $div.css('left', $div.offset().left + 10);
+//         break;
+//     case 40:
+//         $div.css('top', $div.offset().top + 10);
+//         break;
+//     }
+// })
+
+
+// $.fn.toggle2classes = function(class1, class2){
+//   if( !class1 || !class2 )
+//     return this;
+
+//   return this.each(function(){
+//     var $elm = $(this);
+
+//     if( $elm.hasClass(class1) || $elm.hasClass(class2) )
+//       $elm.toggleClass(class1 +' '+ class2);
+
+//     else
+//       $elm.addClass(class1);
+//   });
+// };
 
 
 // var exit = $('.exit');
