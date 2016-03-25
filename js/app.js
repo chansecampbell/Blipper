@@ -16,6 +16,12 @@ $(function(){
  game.truthy = true;
  game.currentPosition = 0;
  game.$squares = $('li');
+ game.borders = { // else var borders =
+   top : [0,1,2,3,4,5],
+   bottom : [30,31,32,33,34,35],
+   right : [5,11,17,23,29,35],
+   left : [0,6,12,18,24,30]
+ }
 
  game.playerMove = function playerMove(){
 
@@ -36,14 +42,6 @@ $(function(){
   
   // })
 
-
-  var borders = {
-    top : [0,1,2,3,4,5],
-    bottom : [30,31,32,33,34,35],
-    right : [5,11,17,23,29,35],
-    left : [0,6,12,18,24,30]
-  }
-
   // var code = e.keyCode || e.which;
   // if(code == 13) { //Enter keycode
   //   //Do something
@@ -51,7 +49,10 @@ $(function(){
 $('body').on("keyup", function(e) {
     event.preventDefault();
     if (e.which === 38) {
-      console.log("up"); 
+      console.log("up");
+      game.currentPosition-=6;
+      var position = game.$squares[game.currentPosition];
+      $(position).addClass("player").siblings('li').removeClass('player');
     } else if (e.which === 39) {
       console.log("right");
       game.currentPosition+=1;
@@ -60,12 +61,37 @@ $('body').on("keyup", function(e) {
       console.log(game.currentPosition);
     } else if (e.which === 40) {
       console.log("down");
+      game.currentPosition+=6;
+      var position = game.$squares[game.currentPosition];
+      $(position).addClass("player").siblings('li').removeClass('player');
     } else if (e.which === 37) {
       console.log("left");
-      game.currentPosition-=1;
+      /// I need to figure out a way to fix this. Currently it only displays an error for 1 slot in the array
+        if (game.currentPosition !== game.borders.left[0]) {
+          game.currentPosition-=1;
+      var position = game.$squares[game.currentPosition];
+      $(position).addClass("player").siblings('li').removeClass('player');
       console.log(game.currentPosition);
+    } else {
+      alert('error!');
+    }
     }
   })
+
+
+//// This code stops the page from scrolling when you key press
+var ar=new Array(33,34,35,36,37,38,39,40);
+
+$(document).keydown(function(e) {
+     var key = e.which;
+      //console.log(key);
+      //if(key==35 || key == 36 || key == 37 || key == 39)
+      if($.inArray(key,ar) > -1) {
+          e.preventDefault();
+          return false;
+      }
+      return true;
+});
 
   //   if (e.which === 97) {
 
@@ -80,6 +106,7 @@ $('body').on("keyup", function(e) {
 
   }
 
+  game.moveCounter++;
   // up 119
   // down 115
   // left 97
@@ -93,18 +120,6 @@ $('body').on("keyup", function(e) {
   // BUT 
 
 
-
-    
-  
-  
-
-   
-  // This changes the computers move every time the player clicks and moves
-   // $("div").removeClass().addClass("arrow-down")
-  // Tracking moves made
-   game.moveCounter++;
-   // game.computerMove();
- // }
 
  
 
