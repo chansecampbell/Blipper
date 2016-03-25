@@ -41,8 +41,8 @@ li {
 .player {
   background-image: url('http://www.clker.com/cliparts/3/v/I/F/6/V/light-blue-circle-md.png');
   background-size: cover;
-  bottom: 0;
-  left: 0;
+/*  bottom: 0;
+  left: 0;*/
 }
 
 /*.computer {

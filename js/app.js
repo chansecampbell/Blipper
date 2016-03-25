@@ -9,112 +9,77 @@ var game = game || {};
 
 $(function(){
 
-// The zombie is added to a variable by it's class
  game.computer = $(".computer").attr("class");
  game.obstacle = $(".obstacle").attr("class");
  game.moveCounter = 0;
-
-
+ game.truthy = true;
 
  game.playerMove = function playerMove(){
   // Click event is set up to listen on all li's on the page.
   $("li").on("click", function(){
-  // If a li is clicked that contains the class of zombie then don't allow it
+  // If a li is clicked that contains the class of the computer
   if ($(this).attr("class") === game.computer){
-    alert("You've been caught.");
+    alert("You can't move here.");
   } else if ($(this).attr("class") === game.obstacle) {
-    alert("You can't go here.");
+    alert("You can't move here.");
   } else {
   // Else add the class 'player' to that spot and remove it from the currently existing one
-   $(this).addClass('player').siblings('li').removeClass('player');
+   if (this.id == (this.id - 1) || this.id == (this.id + 1) || this.id == (this.id - 6) || this.id == (this.id + 6) )
+   {
+    $(this).addClass('player').siblings('li').removeClass('player');
+   }
    console.log(this.id);
-   
-   $("div").removeClass().addClass("arrow-down")
-   //detection
-   // if div (enemy) is facing right && player position is on li with an id of 31 then game over
-   // $("div").hasClass() && game.playerMove === li.
+  // This changes the computers move every time the player clicks and moves
+   // $("div").removeClass().addClass("arrow-down")
+  // Tracking moves made
+   game.moveCounter++;
+   // game.computerMove();
+ }
+ })
  }
 
-//  this.id will tell me where the player is
-// div.id will tell me where the
+// Function rotates the enemy
+ // game.computerMove = function computerMove(){
+ //  if (game.truthy === true){
+ //  game.computerDirection = $("div").removeClass().addClass("arrow-left");
+ //    game.truthy = false;
+ //  } else {
+ //  game.computerDirection = $("div").removeClass().addClass("arrow-right");
+ //    game.truthy = true;
+ //  }
+
+ // }
+
+ // game.detection = function detection(){
+ //  // if game.computerDirection.hasClass("arrow-left")
+ //  // && this.id has an id of 32
+ //  // if (game.computerDirection.hasClass("arrow-left"){
+ //  //   console.log("hello world");
+ //  // }
+ // }
+
+ // game.movements = function movements(){
+ //  // I only want to allow a movement if the player clicks on an li that has an id of +1, -1, +6 or -6
+ //  // if (this.id.val() === 0 + 1 || 0 - 1 || 0 + 6)
+ // }
+
 
 
 
 
 /// function that assigns the div two different classes of directions
 
+
    // console.log(this);
-   // game.moveCounter++;
+   // 
    // console.log(game.moveCounter);
    // Assign 4 classes to the enemy and make them run randomly when I click
 
    /// Currently this moves anywhere. Set up and if/else rule to only be able to move to a sibling in -1 +1 -6 and +6 if possible (meaning up down left and right)
  // }
-})
-}
+
 game.playerMove();
 
 })
-
-
-/// Variables needed
-
-// var score = 0;
-// var lives = 3;
-// var player;
-// // console.log(player)
-// var zombie1;
-// var zombie2;
-// var zombie3;
-// var powerUp1;
-// var powerUp2;
-
-
-
-
-
-
-
-
-// $.fn.toggle2classes = function(class1, class2){
-//   if( !class1 || !class2 )
-//     return this;
-
-//   return this.each(function(){
-//     var $elm = $(this);
-
-//     if( $elm.hasClass(class1) || $elm.hasClass(class2) )
-//       $elm.toggleClass(class1 +' '+ class2);
-
-//     else
-//       $elm.addClass(class1);
-//   });
-// };
-
-
-// var exit = $('.exit');
-// console.log(player)
-
-// $('.menu-toggle').click( function() {
-    // var i = 0;
-// } );
- // $('player').removeAttr('class');
- /// Remove all instances of this class after the click so that it doesnt trail like it currently does.
-// var player =
-// var player = $('.player');
-// var li = document.getElementsByClassName('li');
-
-// for (var i = 0; i < li.length; i++){
-//  li[i].addEventListener("click", function(){
-//    console.log(this);
-//  })
-// $('.player').removeClass();
-// $('player').empty();
-// $("#34").toggleClass("player");
-// $(this).append($(player).html());
-
-// player = $(player).contents().appendTo(this);
-// console.log(this);
-
 
 
