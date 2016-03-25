@@ -1,11 +1,8 @@
-////// Survival Game
+////// Strategic game
 ////// 6 x 6 grid 
-////// Player starts at the bottom of the grid
-////// You can use the directional keys to move across the grid.
-////// There are things in your way that damage your HP - 3 lives and your dead.
-////// There are also things on the screen that give you HP back - 3 lives max.
-////// Your goal is to strategically make your way across the screen bottom to top and escape the horror house.
-///// You either have to be strategic with your moves to survive but you are also rewarded for the less moves you can complete the level within.
+////// Player moves across the squares, but each time you move the computer randomly turns
+////// You need to avoid being caught by the computer who may turn towards you. If your in the square next to the computer then your caught and the game is over.
+///// Need to add a randomiser onto the player move which means that the computer chooses one of 4 div classes.
 
 //// The game is created as an object
 var game = game || {};
@@ -13,8 +10,9 @@ var game = game || {};
 $(function(){
 
 // The zombie is added to a variable by it's class
- game.zombie = $(".zombie").attr("class");
- game.obstacle = $(".boulder").attr("class");
+ game.computer = $(".computer").attr("class");
+ game.obstacle = $(".obstacle").attr("class");
+ game.moveCounter = 0;
 
 
 
@@ -22,39 +20,42 @@ $(function(){
   // Click event is set up to listen on all li's on the page.
   $("li").on("click", function(){
   // If a li is clicked that contains the class of zombie then don't allow it
-  if ($(this).attr("class") === game.zombie){
-    alert("The zombie eats your brains. You're dead.");
+  if ($(this).attr("class") === game.computer){
+    alert("You've been caught.");
   } else if ($(this).attr("class") === game.obstacle) {
     alert("You can't go here.");
   } else {
   // Else add the class 'player' to that spot and remove it from the currently existing one
-   $(this).addClass('player');
-   $(this).siblings('li').removeClass('player');
-   console.log(this);
+   $(this).addClass('player').siblings('li').removeClass('player');
+   console.log(this.id);
+   
+   $("div").removeClass().addClass("arrow-down")
+   //detection
+   // if div (enemy) is facing right && player position is on li with an id of 31 then game over
+   // $("div").hasClass() && game.playerMove === li.
  }
+
+//  this.id will tell me where the player is
+// div.id will tell me where the
+
+
+
+
+/// function that assigns the div two different classes of directions
+
+   // console.log(this);
+   // game.moveCounter++;
+   // console.log(game.moveCounter);
+   // Assign 4 classes to the enemy and make them run randomly when I click
+
+   /// Currently this moves anywhere. Set up and if/else rule to only be able to move to a sibling in -1 +1 -6 and +6 if possible (meaning up down left and right)
+ // }
 })
 }
-
-
-// game.whichSquare = function whichSquare(){
-//   if (this.playerMove.class("zombie.player")) {
-//     console.log("hello world");
-//   }
-//   game.whichSquare();
-
-// }
-
 game.playerMove();
 
 })
 
-/// Need to plan what happens as a consequence of the click? 
-// These are the potential outcomes:
-// If the square is empty and next to the player then move to it.
-// If the square has an enemy and is next to the to the player then move to it and lose a life.
-// If the square has an item and is next to the player then move to it and gain a life/powerup.
-// If the square is the exit then the level is complete and a new level is generated.
-// If the square is not next to the player then move invalid.
 
 /// Variables needed
 
@@ -72,23 +73,7 @@ game.playerMove();
 
 
 
-// var $div = $('div');
-// $(document).keydown(function(e) {
-//     switch (e.which) {
-//     case 37:
-//         $div.css('left', $div.offset().left - 10);
-//         break;
-//     case 38:
-//         $div.css('top', $div.offset().top - 10);
-//         break;
-//     case 39:
-//         $div.css('left', $div.offset().left + 10);
-//         break;
-//     case 40:
-//         $div.css('top', $div.offset().top + 10);
-//         break;
-//     }
-// })
+
 
 
 // $.fn.toggle2classes = function(class1, class2){

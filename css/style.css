@@ -1,3 +1,27 @@
+/*#environment {
+  height: 400px;
+  width: 800px;
+  background-color: red;
+
+}
+
+#player {
+  height: 50px;
+  width: 50px;
+  background-color: blue;
+}*/
+
+
+/*div{
+    background-image: url('http://orig08.deviantart.net/f8ee/f/2012/065/d/0/farengar_sprite_by_valdrec-d4rz8rs.png');
+    background-size: cover;
+    height:100px;
+    width:100px;
+    position: absolute;
+    top: 0;
+    left: 0;
+}*/
+
 ul {
   width: 600px;
   height: 800px;
@@ -15,22 +39,88 @@ li {
 }
 
 .player {
-  background-image: url('http://orig08.deviantart.net/f8ee/f/2012/065/d/0/farengar_sprite_by_valdrec-d4rz8rs.png');
+  background-image: url('http://www.clker.com/cliparts/3/v/I/F/6/V/light-blue-circle-md.png');
   background-size: cover;
+  bottom: 0;
+  left: 0;
 }
 
-.zombie {
+/*.computer {
   background-image: url('http://orig07.deviantart.net/4f30/f/2012/141/3/6/8_bit_zombie_by_melolzugaming-d50kbqk.png');
   background-size: cover;
-}
+}*/
 
-.boulder {
-  background-image: url('http://www.zeldadungeon.net/wiki/images/f/f6/TMC_Boulder.png');
+.obstacle {
+  background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Disc_Plain_blue_dark.svg/1000px-Disc_Plain_blue_dark.svg.png');
   background-size: cover;
 }
-
 
 .exit {
   background-image: none;
   background-color: black;
 }
+
+
+.arrow-up {
+  width: 0; 
+  height: 0; 
+  border-left: 40px solid transparent;
+  border-right: 40px solid transparent;
+  
+  border-bottom: 40px solid black;
+}
+
+.arrow-down {
+  width: 0; 
+  height: 0; 
+  border-left: 40px solid transparent;
+  border-right: 40px solid transparent;
+  
+  border-top: 40px solid #f00;
+}
+
+.arrow-right {
+  width: 0; 
+  height: 0; 
+  border-top: 40px solid transparent;
+  border-bottom: 40px solid transparent;
+  
+  border-left: 40px solid green;
+}
+
+.arrow-left {
+  width: 0; 
+  height: 0; 
+  border-top: 40px solid transparent;
+  border-bottom: 40px solid transparent; 
+  
+  border-right:40px solid blue; 
+}
+
+/*.arrow-up,
+.arrow-down,
+.arrow-left,
+.arrow-right {
+  position: relative;
+     top: 3pt;
+     content: "";
+     display: block;
+     width: 3em;
+     height: 3em;
+     border-right: 1em solid black;
+     border-top: 1em solid black;
+     transform: rotate(45deg);
+     margin-right: 0.5em;
+}
+
+.arrow-left {
+   -webkit-transform: rotate(225deg);
+}
+
+.arrow-up {
+  -webkit-transform: rotate(315deg);
+}
+
+.arrow-down {
+  -webkit-transform: rotate(135deg);
+}*/
