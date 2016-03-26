@@ -1,3 +1,42 @@
+body {
+  font-family: 'Press Start 2P', cursive;
+}
+
+#about {
+  float: left;
+  width: 200px;
+  height: 400px;
+  border: 3px dotted black;
+  margin-left: 30px;
+  margin-top: 100px;
+  padding: 10px;
+}
+
+#score {
+ font-size: 14px;
+}
+
+h1, h2, h3 {
+  text-align: center;
+}
+
+h1 {
+  font-size: 1em;
+  padding-top: 40px;
+}
+
+h2, h3 {
+  font-size: 0.8em;
+}
+
+span {
+  font-size: 8px;
+  padding: 5px;
+  display: block;
+  text-align: center;
+  padding-bottom: 20px;
+}
+
 ul {
   width: 600px;
   height: 600px;
@@ -16,10 +55,9 @@ li {
 }
 
 .player {
-  background-image: url('http://www.clker.com/cliparts/3/v/I/F/6/V/light-blue-circle-md.png');
-  background-size: cover;
-/*  bottom: 0;
-  left: 0;*/
+/*  background-image: url('http://www.clker.com/cliparts/3/v/I/F/6/V/light-blue-circle-md.png');
+  background-size: cover;*/
+background-color: steelblue;
 }
 
 /*.computer {
@@ -31,8 +69,7 @@ li {
   background: gray;
 }
 
-.exit {
-  background-image: none;
+li:first-child {
   background-color: black;
 }
 

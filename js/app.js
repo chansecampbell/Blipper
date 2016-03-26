@@ -50,12 +50,17 @@ $(function(){
 
 // This checks the value of current positions number against an array. Isnt yet integrated
 // Have a look at what position is doing
-// game.checkBorders = function checkBorders(currentPosition){
+// game.checkBorders = function checkBorders(currentPosition, num){
 //   $.each(game.borders.left, function(key, value){
 //     if (currentPosition === value) {
-//      game.currentPosition+=1;
-//      var position = game.$squares[game.currentPosition]; }
-//     })
+//       $($("li")[game.currentPosition]).removeClass("player");
+//      game.currentPosition += num;
+//      $($("li")[game.currentPosition]).addClass("player").removeClass("empty");
+//      } 
+//      console.log("out of bounds");
+//    })
+//  }
+    
 // }
 // game.checkBorders(30);
 // When you click right, new position is current position +1
@@ -77,7 +82,7 @@ game.playerMove = function playerMove(){
     if (e.which === 38) {
       $($("li")[game.currentPosition]).removeClass("player");
       game.currentPosition-=6;
-       
+
         if ($($("li")[game.currentPosition]).hasClass("obstacle")) {
           console.log("You can't walk here!");
         game.currentPosition+=6;
@@ -85,7 +90,8 @@ game.playerMove = function playerMove(){
         } 
         else {
       $($("li")[game.currentPosition]).addClass("player").removeClass('empty');
-      game.checkForWin();
+      game.moveCounter++;
+      game.computerMove();
         }
     /// RIGHT
     } else if (e.which === 39) {
@@ -99,6 +105,8 @@ game.playerMove = function playerMove(){
       } 
       else {
     $($("li")[game.currentPosition]).addClass("player").removeClass('empty');
+    game.moveCounter++;
+    game.computerMove();
       }
     /// DOWN
     } else if (e.which === 40) {
@@ -112,6 +120,8 @@ game.playerMove = function playerMove(){
             } 
             else {
           $($("li")[game.currentPosition]).addClass("player").removeClass('empty');
+          game.moveCounter++;
+          game.computerMove();
             }
     //// LEFT
     } else if (e.which === 37) {
@@ -125,12 +135,13 @@ game.playerMove = function playerMove(){
        } 
        else {
      $($("li")[game.currentPosition]).addClass("player").removeClass('empty');
+     game.moveCounter++;
+     game.computerMove();
        }
 
     }
-    game.moveCounter++;
-    $( ".moveCounter" ).append(game.moveCounter);
-    game.computerMove();
+    game.checkForWin();
+    $("#score").html(game.moveCounter);
   })
 
   }
@@ -148,9 +159,11 @@ game.playerMove = function playerMove(){
   }
 }
 
+// Check for a win
  game.checkForWin = function checkForWin(){
   if ($("#0").hasClass("player")) {
-    $("h1").append("Congratulations, you beat the level!");
+    $("h3").append("Congratulations, you beat the level!");
+    // Need to add in a feature to end the game and reset the level here.
  }
 }
 
@@ -171,7 +184,6 @@ game.playerMove = function playerMove(){
  game.gameBoard();
  game.start();
  game.playerMove();
- game.checkForWin();
 })
 
 
