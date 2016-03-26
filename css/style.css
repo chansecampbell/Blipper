@@ -44,6 +44,7 @@ ul {
   background-size: 5%;*/
   padding: 0;
   margin: 0 auto;
+  position: relative;
 }
 
 li {
@@ -57,8 +58,53 @@ li {
 .player {
 /*  background-image: url('http://www.clker.com/cliparts/3/v/I/F/6/V/light-blue-circle-md.png');
   background-size: cover;*/
-background-color: steelblue;
+width: 98px;
+height: 98px;
 }
+
+@-webkit-keyframes zoomIn {
+  from {
+    opacity: 0;
+    -webkit-transform: scale3d(.3, .3, .3);
+    transform: scale3d(.3, .3, .3);
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes zoomIn {
+  from {
+    opacity: 0;
+    -webkit-transform: scale3d(.3, .3, .3);
+    transform: scale3d(.3, .3, .3);
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+.zoomIn {
+  -webkit-animation-name: zoomIn;
+  animation-name: zoomIn;
+}
+/*
+   @keyframes example {
+       0%   {background-color: white; left:0px; top:0px;}
+       25%  {background-color: steelblue; left:200px; top:0px;}
+       50%  {background-color: steelblue; left:200px; top:200px;}
+       75%  {background-color: blue; left:0px; top:200px;}
+       100% {background-color: blue; left:0px; top:0px;}
+   }*/
+
+   /* The element to apply the animation to */
+   .player {
+       background-color: blue;
+       animation-name: zoomIn;
+       animation-duration: 0.2s;
+     }
 
 /*.computer {
   background-image: url('http://orig07.deviantart.net/4f30/f/2012/141/3/6/8_bit_zombie_by_melolzugaming-d50kbqk.png');

@@ -140,6 +140,7 @@ game.playerMove = function playerMove(){
        }
 
     }
+    game.detection();
     game.checkForWin();
     $("#score").html(game.moveCounter);
   })
@@ -167,19 +168,17 @@ game.playerMove = function playerMove(){
  }
 }
 
-   // game.detection = function detection(){
-    // player loses
-    // if #31 has a class of computer right && #32 has a class of player then game over
-    // if #31 has a class of computer left && #30 has a class of player then game over
-    // if #2 has a class of computer right && #3 has a class of player then game over
-    // if #2 has a class of computer down && #8 has a class of player then game over
-
-  //   if (this.currentPosition = 0) {
-  //               alert("You've won!");
-  //  }
-  // }
- // }
-
+   game.detection = function detection(){
+    // Cant figure out how to do the 4 comparisons below for my win conditions...
+  // if computer-right's id === player id - 1 then game over
+  // if computer-left's id === player id + 1 then game over
+  // if computer-up's id === player id -6 then game over
+  // if computer-down's id === player id +6 then game over
+    if ($("computer-right").attr('id') === $("player").attr('id') - 1) {
+      console.log("game over");
+    }
+  }
+  
  
  game.gameBoard();
  game.start();
