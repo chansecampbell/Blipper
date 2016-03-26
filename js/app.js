@@ -89,7 +89,7 @@ game.playerMove = function playerMove(){
         $($("li")[game.currentPosition]).addClass("player").removeClass("empty");
         } 
         else {
-      $($("li")[game.currentPosition]).addClass("player").removeClass('empty');
+      $($("li")[game.currentPosition]).addClass("player").css("animation-name", "slideInUp").removeClass('empty');
       game.moveCounter++;
       game.computerMove();
         }
@@ -104,7 +104,7 @@ game.playerMove = function playerMove(){
       $($("li")[game.currentPosition]).addClass("player").removeClass("empty");
       } 
       else {
-    $($("li")[game.currentPosition]).addClass("player").removeClass('empty');
+    $($("li")[game.currentPosition]).addClass("player").css("animation-name", "slideInLeft").removeClass('empty');
     game.moveCounter++;
     game.computerMove();
       }
@@ -119,7 +119,7 @@ game.playerMove = function playerMove(){
             $($("li")[game.currentPosition]).addClass("player").removeClass("empty");
             } 
             else {
-          $($("li")[game.currentPosition]).addClass("player").removeClass('empty');
+          $($("li")[game.currentPosition]).addClass("player").css("animation-name", "slideInDown").removeClass('empty');
           game.moveCounter++;
           game.computerMove();
             }
@@ -134,7 +134,7 @@ game.playerMove = function playerMove(){
        $($("li")[game.currentPosition]).addClass("player").removeClass("empty");
        } 
        else {
-     $($("li")[game.currentPosition]).addClass("player").removeClass('empty');
+     $($("li")[game.currentPosition]).addClass("player").css("animation-name", "slideInRight").removeClass('empty');
      game.moveCounter++;
      game.computerMove();
        }
