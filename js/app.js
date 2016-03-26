@@ -9,7 +9,10 @@ var game = game || {};
 
 $(function(){
 
- game.computer = $(".computer").attr("class");
+ // game.computerUp = $(".computer-up").attr("class");
+ // game.computerRight = $(".computer-right").attr("class");
+ // game.computerDown = $(".computer-down").attr("class");
+ // game.computerLeft = $(".computer-left").attr("class");
  game.obstacle = $(".obstacle").attr("class");
  game.player = $(".player").attr("class");
  game.moveCounter = 0;
@@ -33,6 +36,10 @@ game.checkBorders = function checkBorders(currentPosition){
     })
 }
 // game.checkBorders(30);
+// When you click right, new position is current position +1
+// When you click up, new position is current position - grid width
+// When you click left, new position is current position -1
+// When you click down, new position is current position + grid width
 
 
 // Not currently in use
@@ -97,67 +104,35 @@ game.playerMove = function playerMove(){
       }
       console.log(game.currentPosition);
     }
-
-
+    game.moveCounter++;
+    game.computerMove();
   })
-
-
-//// This code stops the page from scrolling when you key press
-
-var ar=new Array(33,34,35,36,37,38,39,40);
-
-$(document).keydown(function(e) {
- var key = e.which;
-      //console.log(key);
-      //if(key==35 || key == 36 || key == 37 || key == 39)
-      if($.inArray(key,ar) > -1) {
-        e.preventDefault();
-        return false;
-      }
-      return true;
-    });
-
-  //   if (e.which === 97) {
-
-  //     $(this).addClass('player').siblings('li').removeClass('player');
-  //     // check position isnt in borders.left
-  //     currentPosition-=1;
-
-      // function to check curent position and add player class to the right li
-
-    // }
-    //do for each keypress
 
   }
 
-  game.moveCounter++;
-  // up 119
-  // down 115
-  // left 97
-  // right 100
-
-  // When you click right, new position is current position +1
-  // When you click up, new position is current position - grid width
-  // When you click left, new position is current position -1
-  // When you click down, new position is current position + grid width
 
   // BUT 
 
 
-
-
-
 // Function rotates the enemy
- // game.computerMove = function computerMove(){
- //  if (game.truthy === true){
- //  game.computerDirection = $("div").removeClass().addClass("arrow-left");
- //    game.truthy = false;
- //  } else {
- //  game.computerDirection = $("div").removeClass().addClass("arrow-right");
- //    game.truthy = true;
- //  }
-
- // }
+ game.computerMove = function computerMove(){
+  if (game.truthy === true){
+ // $("li").removeClass().addClass("computer-right");
+ // game.computerDirection = game.computerRight;
+ // $('computerUp').addClass('computerRight').removeClass('computerUp');
+  $("#31").addClass("computer-left").removeClass('computer-right');
+  $("#2").addClass("computer-right").removeClass('computer-down');
+  console.log("ello world");
+    game.truthy = false;
+  } else {
+  // game.computerDirection = $("div").removeClass().addClass("arrow-right");
+  // game.computerDirection = game.computerUp;
+  $("#31").addClass("computer-right").removeClass('computer-left');
+  $("#2").addClass("computer-down").removeClass('computer-right');
+  console.log("goodbey world");
+    game.truthy = true;
+  }
+}
 
  // game.detection = function detection(){
  //  // if game.computerDirection.hasClass("arrow-left")
