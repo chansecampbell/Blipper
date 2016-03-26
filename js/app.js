@@ -51,6 +51,7 @@ $(function(){
     
   }
 
+
 // This checks the value of current positions number against an array. Isnt yet integrated
 // Have a look at what position is doing
 // game.checkBorders = function checkBorders(currentPosition, num){
@@ -88,6 +89,7 @@ game.playerMove = function playerMove(){
         } 
         else {
       $($("li")[game.currentPosition]).addClass("player").css("animation-name", "slideInUp").removeClass('empty');
+      $('#slide').get(0).play();
       game.moveCounter++;
       game.computerMove();
         }
@@ -103,6 +105,7 @@ game.playerMove = function playerMove(){
       } 
       else {
     $($("li")[game.currentPosition]).addClass("player").css("animation-name", "slideInLeft").removeClass('empty');
+    $('#slide').get(0).play();
     game.moveCounter++;
     game.computerMove();
       }
@@ -118,6 +121,7 @@ game.playerMove = function playerMove(){
             } 
             else {
           $($("li")[game.currentPosition]).addClass("player").css("animation-name", "slideInDown").removeClass('empty');
+          $('#slide').get(0).play();
           game.moveCounter++;
           game.computerMove();
             }
@@ -133,6 +137,7 @@ game.playerMove = function playerMove(){
        } 
        else {
      $($("li")[game.currentPosition]).addClass("player").css("animation-name", "slideInRight").removeClass('empty');
+     $('#slide').get(0).play();
      game.moveCounter++;
      game.computerMove();
        }
@@ -168,6 +173,8 @@ game.playerMove = function playerMove(){
  game.checkForWin = function checkForWin(){
   if ($("#0").hasClass("player")) {
     $("h3").append("Congratulations, you beat the level!");
+    $($("li").addClass("won").css("animation-name", "pulse"));
+    $('#end').get(0).play();
     alert("You've completed the level!");
     // Need to add in a feature to end the game and reset the level here.
  }
@@ -191,15 +198,19 @@ game.playerMove = function playerMove(){
 
      if (playerLocation  == (compRight + 1)) {
     $($("li").addClass("caught").css("animation-name", "pulse"));
+    $('#busted').get(0).play();
     alert("You've been caught!");
      } else if (playerLocation == (compLeft - 1)) {
       $($("li").addClass("caught").css("animation-name", "pulse"));
+      $('#busted').get(0).play();
       alert("You've been caught!");
      } else if (playerLocation == (compUp - 6)) {
       $($("li").addClass("caught").css("animation-name", "pulse"));
+      $('#busted').get(0).play();
       alert("You've been caught!");
      } else if (playerLocation == (compDown + 6)) {
       $($("li").addClass("caught").css("animation-name", "pulse"));
+      $('#busted').get(0).play();
       alert("You've been caught!");
      }
    }

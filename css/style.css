@@ -102,6 +102,10 @@ li:first-child {
   background-color: #e57373;
 }
 
+.won {
+  background-color: #A5D6A7;
+}
+
 .computer1-right,
 .computer2-right,
 .computer3-right,
