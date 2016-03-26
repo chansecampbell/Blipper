@@ -105,6 +105,7 @@ game.playerMove = function playerMove(){
       console.log(game.currentPosition);
     }
     game.moveCounter++;
+    // $( ".moveCounter" ).append(game.moveCounter);
     game.computerMove();
   })
 

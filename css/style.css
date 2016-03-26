@@ -1,6 +1,10 @@
 ul {
   width: 600px;
   height: 600px;
+/*  background-image: url('https://s-media-cache-ak0.pinimg.com/236x/e4/a8/1e/e4a81e06f9be9934de83e441de328ec0.jpg');
+  background-size: 5%;*/
+  padding: 0;
+  margin: 0;
 }
 
 li {
@@ -33,19 +37,26 @@ li {
 }
 
 .computer-right {
-  background: red;
+  background-image: url('https://cdn1.iconfinder.com/data/icons/general-9/500/left_arrow-128.png');
+  background-size: cover;
+  -webkit-transform: rotate(180deg);
 }
 
 .computer-left {
-  background: blue;
+  background-image: url('https://cdn1.iconfinder.com/data/icons/general-9/500/left_arrow-128.png');
+  background-size: cover;
 }
 
 .computer-up {
-  background: yellow;
+  background-image: url('https://cdn1.iconfinder.com/data/icons/general-9/500/left_arrow-128.png');
+  background-size: cover;
+  -webkit-transform: rotate(90deg);
 }
 
 .computer-down {
-  background: green;
+ background-image: url('https://cdn1.iconfinder.com/data/icons/general-9/500/left_arrow-128.png');
+ background-size: cover;
+ -webkit-transform: rotate(270deg);
 }
 
 ./*computer2-down {
