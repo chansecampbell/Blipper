@@ -73,159 +73,105 @@ game.playerMove = function playerMove(){
 
   $('body').on("keyup", function(e) {
     event.preventDefault();
+    /// UP
     if (e.which === 38) {
       $($("li")[game.currentPosition]).removeClass("player");
       game.currentPosition-=6;
-      // game.currentPosition-=6;
-      // var position = game.$squares[game.currentPosition];
-      // if ($(position).attr("class") === game.obstacle){
-      //   alert("You can't move here.");
-      //   game.currentPosition+=6;
-      //   var position = game.$squares[game.currentPosition];
-      // } else {
-      //   $(game.currentPosition).addClass("player").siblings('li').removeClass('player');
-      // }
-      // console.log(game.currentPosition);
-      // $(position).addClass("player").siblings('li').removeClass('player');
-      if ($($("li")[game.currentPosition]).hasClass("obstacle")) {
-        console.log("hello world");
-      game.currentPosition+=6;
-      $($("li")[game.currentPosition]).addClass("player").removeClass("empty");
-    } else {
-
-      // Remove the current player
-      
-
-      // Change the position
-      // game.currentPosition-=6;
-
-      // Add player class
-      $($("li")[game.currentPosition]).addClass("player");
-
-      }
-
+       
+        if ($($("li")[game.currentPosition]).hasClass("obstacle")) {
+          console.log("You can't walk here!");
+        game.currentPosition+=6;
+        $($("li")[game.currentPosition]).addClass("player").removeClass("empty");
+        } 
+        else {
+      $($("li")[game.currentPosition]).addClass("player").removeClass('empty');
+      game.checkForWin();
+        }
+    /// RIGHT
     } else if (e.which === 39) {
-      // game.currentPosition+=1;
-      // var position = game.$squares[game.currentPosition];
-      // if ($(position).attr("class") === game.obstacle){
-      //   alert("You can't move here.");
-      //   game.currentPosition-=1;
-      //   var position = game.$squares[game.currentPosition];
-      // } else {
-      //   $(position).addClass("player").siblings('li').removeClass('player');
-      // }  
-      // Remove the current player
-      $($("li")[game.currentPosition]).removeClass("player");
-
-      // Change the position
-      game.currentPosition+=1;
-
-      // Add player class
-      $($("li")[game.currentPosition]).addClass("player");
-
-      console.log(game.currentPosition);
-
+    $($("li")[game.currentPosition]).removeClass("player");
+    game.currentPosition+=1;
+     
+      if ($($("li")[game.currentPosition]).hasClass("obstacle")) {
+        console.log("You can't walk here!");
+      game.currentPosition-=1;
+      $($("li")[game.currentPosition]).addClass("player").removeClass("empty");
+      } 
+      else {
+    $($("li")[game.currentPosition]).addClass("player").removeClass('empty');
+      }
+    /// DOWN
     } else if (e.which === 40) {
-      // game.currentPosition+=6;
-      // var position = game.$squares[game.currentPosition];
-      // if ($(position).attr("class") === game.obstacle){
-      //   alert("You can't move here.");
-      //   game.currentPosition-=6;
-      //   var position = game.$squares[game.currentPosition];
-      // } else {
-      //   $(position).addClass("player").siblings('li').removeClass('player');
-      // }      
-      // Remove the current player
       $($("li")[game.currentPosition]).removeClass("player");
-
-      // Change the position
-      game.currentPosition+=6;
-
-      // Add player class
-      $($("li")[game.currentPosition]).addClass("player");
-      console.log(game.currentPosition);
-
+          game.currentPosition+=6;
+           
+            if ($($("li")[game.currentPosition]).hasClass("obstacle")) {
+              console.log("You can't walk here!");
+            game.currentPosition-=6;
+            $($("li")[game.currentPosition]).addClass("player").removeClass("empty");
+            } 
+            else {
+          $($("li")[game.currentPosition]).addClass("player").removeClass('empty');
+            }
+    //// LEFT
     } else if (e.which === 37) {
-      // game.currentPosition-=1;
-      // var position = game.$squares[game.currentPosition];
-      // Checks for collision
-      // if ($(position).attr("class") === game.obstacle){
-      //   alert("You can't move here.");
-      //   game.currentPosition+=1;
-      //   var position = game.$squares[game.currentPosition];
-      // } else {
+     $($("li")[game.currentPosition]).removeClass("player");
+     game.currentPosition-=1;
+      
+       if ($($("li")[game.currentPosition]).hasClass("obstacle")) {
+         console.log("You can't walk here!");
+       game.currentPosition+=1;
+       $($("li")[game.currentPosition]).addClass("player").removeClass("empty");
+       } 
+       else {
+     $($("li")[game.currentPosition]).addClass("player").removeClass('empty');
+       }
 
-        // Remove the current player
-        $($("li")[game.currentPosition]).removeClass("player");
-
-        // Change the position
-        game.currentPosition-=1;
-
-        // Add player class
-        $($("li")[game.currentPosition]).addClass("player");
-        
-      console.log(game.currentPosition);
     }
     game.moveCounter++;
-    // $( ".moveCounter" ).append(game.moveCounter);
+    $( ".moveCounter" ).append(game.moveCounter);
     game.computerMove();
   })
 
   }
 
-
-  // BUT 
-
-
 // Function rotates the enemy
  game.computerMove = function computerMove(){
   if (game.truthy === true){
- // $("li").removeClass().addClass("computer-right");
- // game.computerDirection = game.computerRight;
- // $('computerUp').addClass('computerRight').removeClass('computerUp');
   $("#31").addClass("computer-left").removeClass('computer-right');
   $("#2").addClass("computer-right").removeClass('computer-down');
     game.truthy = false;
   } else {
-  // game.computerDirection = $("div").removeClass().addClass("arrow-right");
-  // game.computerDirection = game.computerUp;
   $("#31").addClass("computer-right").removeClass('computer-left');
   $("#2").addClass("computer-down").removeClass('computer-right');
     game.truthy = true;
   }
 }
 
- // game.detection = function detection(){
- //  // if game.computerDirection.hasClass("arrow-left")
- //  // && this.id has an id of 32
- //  // if (game.computerDirection.hasClass("arrow-left"){
- //  //   console.log("hello world");
- //  // }
+ game.checkForWin = function checkForWin(){
+  if ($("#0").hasClass("player")) {
+    $("h1").append("Congratulations, you beat the level!");
+ }
+}
+
+   // game.detection = function detection(){
+    // player loses
+    // if #31 has a class of computer right && #32 has a class of player then game over
+    // if #31 has a class of computer left && #30 has a class of player then game over
+    // if #2 has a class of computer right && #3 has a class of player then game over
+    // if #2 has a class of computer down && #8 has a class of player then game over
+
+  //   if (this.currentPosition = 0) {
+  //               alert("You've won!");
+  //  }
+  // }
  // }
 
- // game.movements = function movements(){
- //  // I only want to allow a movement if the player clicks on an li that has an id of +1, -1, +6 or -6
- //  // if (this.id.val() === 0 + 1 || 0 - 1 || 0 + 6)
- // }
-
-
-
-
-
-/// function that assigns the div two different classes of directions
-
-
-   // console.log(this);
-   // 
-   // console.log(game.moveCounter);
-   // Assign 4 classes to the enemy and make them run randomly when I click
-
-   /// Currently this moves anywhere. Set up and if/else rule to only be able to move to a sibling in -1 +1 -6 and +6 if possible (meaning up down left and right)
- // }
+ 
  game.gameBoard();
  game.start();
  game.playerMove();
-
+ game.checkForWin();
 })
 
 
