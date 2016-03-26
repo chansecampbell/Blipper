@@ -24,6 +24,7 @@ $(function(){
      $("#10").addClass("computer2-left").removeClass('empty');
      $("#20").addClass("computer3-down").removeClass('empty');
      $("#31").addClass("computer4-right").removeClass('empty');
+     $("#23").addClass("computer5-left").removeClass('empty');
      $("#1").addClass("obstacle").removeClass('empty');
      $("#4").addClass("obstacle").removeClass('empty');
      $("#12").addClass("obstacle").removeClass('empty');
@@ -151,12 +152,14 @@ game.playerMove = function playerMove(){
   $("#10").addClass("computer2-down").removeClass('computer2-left');
   $("#20").addClass("computer3-right").removeClass('computer3-down');
   $("#31").addClass("computer4-left").removeClass('computer4-right');
+  $("#23").addClass("computer5-down").removeClass('computer5-left');
     game.truthy = false;
   } else {
   $("#2").addClass("computer1-down").removeClass('computer1-right');
   $("#10").addClass("computer2-left").removeClass('computer2-down');
   $("#20").addClass("computer3-down").removeClass('computer3-right');
   $("#31").addClass("computer4-right").removeClass('computer4-left');
+  $("#23").addClass("computer5-left").removeClass('computer5-down');
     game.truthy = true;
   }
 }
@@ -172,7 +175,7 @@ game.playerMove = function playerMove(){
 
   // Win conditions
    game.detection = function detection(i){
-    for (i = 0; i < 5; i++) {
+    for (i = 0; i < 6; i++) {
    var compRight = $('.computer'+i+'-right').attr('id');
    compRight = parseInt(compRight);
    var compLeft = $('.computer'+i+'-left').attr('id');
