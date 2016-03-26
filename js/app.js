@@ -23,6 +23,21 @@ $(function(){
    left : [0,6,12,18,24,30]
  }
 
+// This checks the value of current positions number against an array.
+game.checkBorders = function checkBorders(currentPosition){
+  $.each(game.borders.left, function(key, value){
+  if (currentPosition === value)
+    console.log("we have a match");
+})
+}
+
+game.checkBorders(30);
+
+ // console.log(game.borders.left.get(index));
+ // game.checkBorders = function checkBorders(currentPosition) {
+ //  if (currentPosition === game.borders.left.each();)
+ // }
+
  game.playerMove = function playerMove(){
 
   // $("li").on("click", function(){
