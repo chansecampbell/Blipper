@@ -14,7 +14,7 @@ $(function(){
  game.player = $(".player").attr("class");
  game.moveCounter = 0;
  game.truthy = true;
- game.currentPosition = 0;
+ game.currentPosition = 35;
  game.$squares = $('li');
  game.borders = { // else var borders =
    top : [0,1,2,3,4,5],
@@ -28,7 +28,8 @@ $(function(){
 game.checkBorders = function checkBorders(currentPosition){
   $.each(game.borders.left, function(key, value){
     if (currentPosition === value) {
-      console.log(true); }
+     game.currentPosition+=1;
+     var position = game.$squares[game.currentPosition]; }
     })
 }
 // game.checkBorders(30);

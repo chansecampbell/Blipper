@@ -1,33 +1,6 @@
-/*#environment {
-  height: 400px;
-  width: 800px;
-  background-color: red;
-
-}
-
-#player {
-  height: 50px;
-  width: 50px;
-  background-color: blue;
-}*/
-
-
-/*div{
-    background-image: url('http://orig08.deviantart.net/f8ee/f/2012/065/d/0/farengar_sprite_by_valdrec-d4rz8rs.png');
-    background-size: cover;
-    height:100px;
-    width:100px;
-    position: absolute;
-    top: 0;
-    left: 0;
-}*/
-
 ul {
   width: 600px;
-  height: 800px;
-/*  background-image: url('https://s-media-cache-ak0.pinimg.com/736x/e8/85/0a/e8850a26cdef4cb4352801a4f9de7445.jpg');
-  background-size: contain;
-  background-size: 10%;*/
+  height: 600px;
 }
 
 li {
@@ -51,8 +24,7 @@ li {
 }*/
 
 .obstacle {
-  background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Disc_Plain_blue_dark.svg/1000px-Disc_Plain_blue_dark.svg.png');
-  background-size: cover;
+  background: gray;
 }
 
 .exit {
@@ -124,3 +96,27 @@ li {
 .arrow-down {
   -webkit-transform: rotate(135deg);
 }*/
+@media only screen and (max-width: 960px) {
+  ul {
+    width: 500px;
+    height: 500px;
+  }
+
+  li {
+    width: 81.1px;
+    height: 81.1px;
+  }
+}
+
+@media only screen and (max-width: 640px) {
+
+  ul {
+    width: 400px;
+    height: 400px;
+  }
+
+  li {
+    width: 64.2px;
+    height: 64.2px;
+  }
+}
