@@ -23,90 +23,98 @@ $(function(){
    left : [0,6,12,18,24,30]
  }
 
-// This checks the value of current positions number against an array.
+// This checks the value of current positions number against an array. Isnt yet integrated
+// Have a look at what position is doing
 game.checkBorders = function checkBorders(currentPosition){
   $.each(game.borders.left, function(key, value){
-  if (currentPosition === value)
-    console.log("we have a match");
-})
+    if (currentPosition === value) {
+      console.log(true); }
+    })
+}
+// game.checkBorders(30);
+
+
+// Not currently in use
+game.checkCollision = function checkCollision(){
 }
 
-game.checkBorders(30);
 
- // console.log(game.borders.left.get(index));
- // game.checkBorders = function checkBorders(currentPosition) {
- //  if (currentPosition === game.borders.left.each();)
- // }
+game.playerMove = function playerMove(){
 
- game.playerMove = function playerMove(){
-
-  // $("li").on("click", function(){
-
-  // if ($(this).attr("class") === game.computer){
-  //   alert("You can't move here.");
-  // } else if ($(this).attr("class") === game.obstacle) {
-  //   alert("You can't move here.");
-  // } else {
-
-  //  if (this.id == game.currentPosition + 1 || this.id == game.currentPosition - 1 || this.id == game.currentPosition + 6 || this.id == game.currentPosition - 6)
-  //  { $(this).addClass('player').siblings('li').removeClass('player');
-   
-  //   game.currentPosition = this.id;
-  //   console.log(this.id);
-  // } 
-  
-  // })
-
-  // var code = e.keyCode || e.which;
-  // if(code == 13) { //Enter keycode
-  //   //Do something
-  // }
-$('body').on("keyup", function(e) {
+  $('body').on("keyup", function(e) {
     event.preventDefault();
     if (e.which === 38) {
       console.log("up");
       game.currentPosition-=6;
       var position = game.$squares[game.currentPosition];
-      $(position).addClass("player").siblings('li').removeClass('player');
+      if ($(position).attr("class") === game.obstacle){
+        alert("You can't move here.");
+        game.currentPosition+=6;
+        var position = game.$squares[game.currentPosition];
+      } else {
+        $(position).addClass("player").siblings('li').removeClass('player');
+      }
+      console.log(game.currentPosition);
+
     } else if (e.which === 39) {
       console.log("right");
       game.currentPosition+=1;
       var position = game.$squares[game.currentPosition];
-      $(position).addClass("player").siblings('li').removeClass('player');
+      if ($(position).attr("class") === game.obstacle){
+        alert("You can't move here.");
+        game.currentPosition-=1;
+        var position = game.$squares[game.currentPosition];
+      } else {
+        $(position).addClass("player").siblings('li').removeClass('player');
+      }  
       console.log(game.currentPosition);
+
     } else if (e.which === 40) {
       console.log("down");
       game.currentPosition+=6;
       var position = game.$squares[game.currentPosition];
-      $(position).addClass("player").siblings('li').removeClass('player');
+      if ($(position).attr("class") === game.obstacle){
+        alert("You can't move here.");
+        game.currentPosition-=6;
+        var position = game.$squares[game.currentPosition];
+      } else {
+        $(position).addClass("player").siblings('li').removeClass('player');
+      }      
+      console.log(game.currentPosition);
+
     } else if (e.which === 37) {
       console.log("left");
-      /// I need to figure out a way to fix this. Currently it only displays an error for 1 slot in the array
-        if (game.currentPosition !== game.borders.left[0]) {
-          game.currentPosition-=1;
+      game.currentPosition-=1;
       var position = game.$squares[game.currentPosition];
-      $(position).addClass("player").siblings('li').removeClass('player');
+      // Checks for collision
+      if ($(position).attr("class") === game.obstacle){
+        alert("You can't move here.");
+        game.currentPosition+=1;
+        var position = game.$squares[game.currentPosition];
+      } else {
+        $(position).addClass("player").siblings('li').removeClass('player');
+      }
       console.log(game.currentPosition);
-    } else {
-      alert('error!');
     }
-    }
+
+
   })
 
 
 //// This code stops the page from scrolling when you key press
+
 var ar=new Array(33,34,35,36,37,38,39,40);
 
 $(document).keydown(function(e) {
-     var key = e.which;
+ var key = e.which;
       //console.log(key);
       //if(key==35 || key == 36 || key == 37 || key == 39)
       if($.inArray(key,ar) > -1) {
-          e.preventDefault();
-          return false;
+        e.preventDefault();
+        return false;
       }
       return true;
-});
+    });
 
   //   if (e.which === 97) {
 
@@ -136,7 +144,7 @@ $(document).keydown(function(e) {
 
 
 
- 
+
 
 // Function rotates the enemy
  // game.computerMove = function computerMove(){
@@ -178,7 +186,7 @@ $(document).keydown(function(e) {
    /// Currently this moves anywhere. Set up and if/else rule to only be able to move to a sibling in -1 +1 -6 and +6 if possible (meaning up down left and right)
  // }
 
-game.playerMove();
+ game.playerMove();
 
 })
 
