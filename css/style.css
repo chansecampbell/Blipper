@@ -49,7 +49,7 @@ ul {
 /*  background-image: url('https://s-media-cache-ak0.pinimg.com/236x/e4/a8/1e/e4a81e06f9be9934de83e441de328ec0.jpg');
   background-size: 5%;*/
   padding: 0;
-  margin: 0 auto;
+  margin: 50px auto;
   position: relative;
   /*background-color: #B2EBF2;*/
 }
@@ -76,14 +76,9 @@ border: none;
 .player {
 background-color: #90CAF9;
 /* animation-name: slideInRight;*/
-animation-duration: 1s;
+animation-duration: 0.5s;
 }
 
-/*.computer {
-  background-image: url('http://orig07.deviantart.net/4f30/f/2012/141/3/6/8_bit_zombie_by_melolzugaming-d50kbqk.png');
-  background-size: cover;
-}
-*/
 .obstacle {
   background: #26C6DA;
 }
@@ -92,24 +87,40 @@ li:first-child {
   background-color: #303F9F;
 }
 
-.computer-right {
+.caught {
+  background-color: #e57373;
+}
+
+.computer1-right,
+.computer2-right,
+.computer3-right,
+.computer4-right {
   background-image: url('https://cdn1.iconfinder.com/data/icons/general-9/500/left_arrow-128.png');
   background-size: cover;
   -webkit-transform: rotate(180deg);
 }
 
-.computer-left {
+.computer1-left,
+.computer2-left,
+.computer3-left,
+.computer4-left {
   background-image: url('https://cdn1.iconfinder.com/data/icons/general-9/500/left_arrow-128.png');
   background-size: cover;
 }
 
-.computer-up {
+.computer1-up,
+.computer2-up,
+.computer3-up,
+.computer4-up {
   background-image: url('https://cdn1.iconfinder.com/data/icons/general-9/500/left_arrow-128.png');
   background-size: cover;
   -webkit-transform: rotate(90deg);
 }
 
-.computer-down {
+.computer1-down,
+.computer2-down,
+.computer3-down,
+.computer4-down {
  background-image: url('https://cdn1.iconfinder.com/data/icons/general-9/500/left_arrow-128.png');
  background-size: cover;
  -webkit-transform: rotate(270deg);
@@ -364,28 +375,41 @@ li:first-child {
   animation-name: slideOutUp;
 }
 
-
-@media only screen and (max-width: 960px) {
-  ul {
-    width: 500px;
-    height: 500px;
+@-webkit-keyframes pulse {
+  from {
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
   }
 
-  li {
-    width: 81.1px;
-    height: 81.1px;
+  50% {
+    -webkit-transform: scale3d(1.05, 1.05, 1.05);
+    transform: scale3d(1.05, 1.05, 1.05);
+  }
+
+  to {
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
   }
 }
 
-@media only screen and (max-width: 640px) {
-
-  ul {
-    width: 400px;
-    height: 400px;
+@keyframes pulse {
+  from {
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
   }
 
-  li {
-    width: 64.2px;
-    height: 64.2px;
+  50% {
+    -webkit-transform: scale3d(1.05, 1.05, 1.05);
+    transform: scale3d(1.05, 1.05, 1.05);
   }
+
+  to {
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+.pulse {
+  -webkit-animation-name: pulse;
+  animation-name: pulse;
 }

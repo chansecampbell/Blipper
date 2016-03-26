@@ -20,8 +20,10 @@ $(function(){
    for (var i=0; i < (width*width); i++){
      $(".grid").append("<li id="+i+" class='empty'></li>");
      $("#35").addClass("player").removeClass('empty');
-     $("#2").addClass("computer-down").removeClass('empty');
-     $("#31").addClass("computer-left").removeClass('empty');
+     $("#2").addClass("computer1-down").removeClass('empty');
+     $("#10").addClass("computer2-left").removeClass('empty');
+     $("#20").addClass("computer3-down").removeClass('empty');
+     $("#31").addClass("computer4-right").removeClass('empty');
      $("#1").addClass("obstacle").removeClass('empty');
      $("#4").addClass("obstacle").removeClass('empty');
      $("#12").addClass("obstacle").removeClass('empty');
@@ -44,8 +46,8 @@ $(function(){
       top : [0,1,2,3,4,5],
       bottom : [30,31,32,33,34,35],
       right : [5,11,17,23,29,35],
-      left : [0,6,12,18,24,30]
-    }
+      left : [0,6,12,18,24,30] };
+    
   }
 
 // This checks the value of current positions number against an array. Isnt yet integrated
@@ -67,11 +69,6 @@ $(function(){
 // When you click up, new position is current position - grid width
 // When you click left, new position is current position -1
 // When you click down, new position is current position + grid width
-
-
-// Not currently in use
-// game.checkCollision = function checkCollision(){
-// }
 
 
 game.playerMove = function playerMove(){
@@ -150,12 +147,16 @@ game.playerMove = function playerMove(){
 // Function rotates the enemy
  game.computerMove = function computerMove(){
   if (game.truthy === true){
-  $("#31").addClass("computer-left").removeClass('computer-right');
-  $("#2").addClass("computer-right").removeClass('computer-down');
+  $("#2").addClass("computer1-right").removeClass('computer1-down');
+  $("#10").addClass("computer2-down").removeClass('computer2-left');
+  $("#20").addClass("computer3-right").removeClass('computer3-down');
+  $("#31").addClass("computer4-left").removeClass('computer4-right');
     game.truthy = false;
   } else {
-  $("#31").addClass("computer-right").removeClass('computer-left');
-  $("#2").addClass("computer-down").removeClass('computer-right');
+  $("#2").addClass("computer1-down").removeClass('computer1-right');
+  $("#10").addClass("computer2-left").removeClass('computer2-down');
+  $("#20").addClass("computer3-down").removeClass('computer3-right');
+  $("#31").addClass("computer4-right").removeClass('computer4-left');
     game.truthy = true;
   }
 }
@@ -164,21 +165,42 @@ game.playerMove = function playerMove(){
  game.checkForWin = function checkForWin(){
   if ($("#0").hasClass("player")) {
     $("h3").append("Congratulations, you beat the level!");
+    alert("You've completed the level!");
     // Need to add in a feature to end the game and reset the level here.
  }
 }
 
-   game.detection = function detection(){
-    // Cant figure out how to do the 4 comparisons below for my win conditions...
-  // if computer-right's id === player id - 1 then game over
-  // if computer-left's id === player id + 1 then game over
-  // if computer-up's id === player id -6 then game over
-  // if computer-down's id === player id +6 then game over
-    if ($("computer-right").attr('id') === $("player").attr('id') - 1) {
-      console.log("game over");
-    }
-  }
-  
+  // Win conditions
+   game.detection = function detection(i){
+    for (i = 0; i < 5; i++) {
+   var compRight = $('.computer'+i+'-right').attr('id');
+   compRight = parseInt(compRight);
+   var compLeft = $('.computer'+i+'-left').attr('id');
+   compLeft = parseInt(compLeft);
+   var compUp = $('.computer'+i+'-up').attr('id');
+   compUp = parseInt(compUp);
+   var compDown = $('.computer'+i+'-down').attr('id');
+   compDown = parseInt(compDown);
+   var playerLocation = $('.player').attr('id');
+   playerLocation = parseInt(playerLocation);
+   console.log(compDown);
+   console.log(playerLocation);
+
+     if (playerLocation  == (compRight + 1)) {
+    $($("li").addClass("caught").css("animation-name", "pulse"));
+    alert("You've been caught!");
+     } else if (playerLocation == (compLeft - 1)) {
+      $($("li").addClass("caught").css("animation-name", "pulse"));
+      alert("You've been caught!");
+     } else if (playerLocation == (compUp - 6)) {
+      $($("li").addClass("caught").css("animation-name", "pulse"));
+      alert("You've been caught!");
+     } else if (playerLocation == (compDown + 6)) {
+      $($("li").addClass("caught").css("animation-name", "pulse"));
+      alert("You've been caught!");
+     }
+   }
+   }
  
  game.gameBoard();
  game.start();
