@@ -101,6 +101,10 @@ li:first-child {
   background-color: #e57373;
 }
 
+.player-caught {
+  background-color: #b71c1c;
+}
+
 .won {
   background-color: #A5D6A7;
 }
