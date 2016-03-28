@@ -4,6 +4,12 @@ body {
   background: #E0F7FA;
 }
 
+.wrapper {
+  width: 800px;
+  height: 800px;
+
+}
+
 #left {
   float: left;
   width: 200px;
@@ -93,7 +99,7 @@ animation-duration: 0.5s;
   background: #26C6DA;
 }
 
-li:first-child {
+.exit {
   background-color: #303F9F;
 }
 

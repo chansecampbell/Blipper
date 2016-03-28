@@ -7,12 +7,13 @@
 //// The game is created as an object
 var game = game || {};
   
-game.width = 6;
 game.levelNumber = 0;
+game.width = 6;
+
 
 game.levels = [
   { /// game 1
-    obstacles: [1,4,12,14,15,17,25,28],
+    obstacles: [4,12,14,15,17,25,28],
     computers: {
       one: 2,
       two: 7,
@@ -32,7 +33,7 @@ game.levels = [
     }    
   },
    { /// game 2
-    obstacles: [6, 11, 14, 31],
+    obstacles: [11, 14, 15, 16, 17, 18, 24, 30, 31],
     computers: {
       one: 2,
       two: 3,
@@ -44,7 +45,7 @@ game.levels = [
       eight: 32
     },
     player: 35,
-    exit: 0,
+    exit: 5,
     borders: { 
       top : [0,1,2,3,4,5],
       bottom : [30,31,32,33,34,35],
@@ -76,14 +77,14 @@ game.gameBoard = function(){
 
   //// how can i alter this value to filter through my different games.
   game.checkForLevel();
-  // game.level = game.levels[0];
+  $("#which").html("?");
 
 
   $("#" + game.level.player).addClass("player").removeClass('empty');
   $("#" + game.level.exit).addClass("exit").removeClass('empty');
   $("#" + game.level.computers.one).addClass("computer1-right").removeClass('empty');
-  // $("#" + game.level.computers.two).addClass("computer2-right").removeClass('empty');
-  $("#" + game.level.computers.three).addClass("computer3-down").removeClass('empty');
+  $("#" + game.level.computers.two).addClass("computer2-right").removeClass('empty');
+  $("#" + game.level.computers.three).addClass("computer3-left").removeClass('empty');
   $("#" + game.level.computers.four).addClass("computer4-down").removeClass('empty');
   $("#" + game.level.computers.five).addClass("computer5-down").removeClass('empty');
   $("#" + game.level.computers.six).addClass("computer6-right").removeClass('empty');
@@ -98,8 +99,8 @@ game.gameBoard = function(){
 game.computerMove = function(){
   if (game.truthy === true){
    $("#" + game.level.computers.one).addClass("computer1-down").removeClass('computer1-right');
-   // $("#" + game.level.computers.two).addClass("computer2-down").removeClass('computer2-right');
-   $("#" + game.level.computers.three).addClass("computer3-left").removeClass('computer3-down');
+   $("#" + game.level.computers.two).addClass("computer2-down").removeClass('computer2-right');
+   $("#" + game.level.computers.three).addClass("computer3-down").removeClass('computer3-left');
    $("#" + game.level.computers.four).addClass("computer4-right").removeClass('computer4-down');
    $("#" + game.level.computers.five).addClass("computer5-right").removeClass('computer5-down');
    $("#" + game.level.computers.six).addClass("computer6-left").removeClass('computer6-right');
@@ -108,8 +109,8 @@ game.computerMove = function(){
    game.truthy = false;
  } else {
    $("#" + game.level.computers.one).addClass("computer1-right").removeClass('computer1-down');
-   // $("#" + game.level.computers.two).addClass("computer2-right").removeClass('computer2-down');
-   $("#" + game.level.computers.three).addClass("computer3-down").removeClass('computer3-left');
+   $("#" + game.level.computers.two).addClass("computer2-right").removeClass('computer2-down');
+   $("#" + game.level.computers.three).addClass("computer3-left").removeClass('computer3-down');
    $("#" + game.level.computers.four).addClass("computer4-down").removeClass('computer4-right');
    $("#" + game.level.computers.five).addClass("computer5-down").removeClass('computer5-right');
    $("#" + game.level.computers.six).addClass("computer6-right").removeClass('computer6-left');
@@ -195,7 +196,7 @@ game.playerMove = function(){
 // Check for a win
 game.checkForWin = function(){
   if ($(".exit").hasClass("player")) {
-    $("h3").append("Congratulations, you beat the level!");
+    $("#which").html("Congratulations, you beat the level!");
     $($("li").addClass("won").css("animation-name", "pulse"));
     $('#end').get(0).play();
     alert("You've completed the level!");
@@ -249,14 +250,23 @@ game.detection = function(i){
   }
 }
 
+
+
 game.start = function(){
   game.clearBoard();
   game.gameBoard();
-  game.playerMove();
+  $("#restart" ).on("click", function(){
+  game.clearBoard();
+  game.gameBoard();
+  game.moveCounter = 0;
+  $("#score").html(game.moveCounter);
+  });
 }
+
 
 $(function(){
   game.start();
+  game.playerMove();
 })
 
 

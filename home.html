@@ -5,27 +5,23 @@
   <script type="text/javascript" src="./js/app.js"></script>
   <link href='https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700,300' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" type="text/css" href="./css/style.css">
-  <title>Project 1</title>
+  <title>Blip Man</title>
 </head>
-<body>
+<body><div id="wrapper">
 <div id="left">
+<h1>Level: <span id="which"></span></h1>
   <h1>Player Moves</h1>
   <span id="score">0</span>
-  <button value='3'>3</button>
-  <button value='4'>4</button>
-  <button value='5'>5</button>
-  <button value='6'>6</button>
-  <h3></h3>
 </div>
 <div id="right">
 <h1>Game Rules</h1>
 <span>1. Get to the exit in as few moves as possible.</span>
 <span>2. Don't be caught. Enemies can see one space ahead.</span>
 <span>3. If an enemy isn't facing you, you can take them out.</span>
-<h1 id="reset">Reset</h1>
-<audio id="slide" src="./coin_slide.mp3" type="audio/mp3">
-<audio id="end" src="./end_game.mp3" type="audio/mp3">
-<audio id="busted" src="./dum_dum.mp3" type="audio/mp3">
+<h1 id="restart">Restart</h1>
+<audio id="slide" src="./coin_slide.mp3" type="audio/mp3"></audio>
+<audio id="end" src="./end_game.mp3" type="audio/mp3"></audio>
+<audio id="busted" src="./dum_dum.mp3" type="audio/mp3"></audio>
 
 </div>
 <!-- <h1 class="moveCounter"></h1>
@@ -67,6 +63,6 @@
     <li id="34"></li>
     <li id="35" class="player"></li>
   </ul> -->
-
+</div>
 </body>
 </html>
