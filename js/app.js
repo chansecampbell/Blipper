@@ -7,7 +7,7 @@
 //// The game is created as an object
 var game = game || {};
   
-game.levelNumber = 1;
+game.levelNumber = 0;
 game.width = 6;
 
 
@@ -30,28 +30,29 @@ game.levels = [
     bestScore: 12   
   },
    { /// game 2
-    obstacles: [14, 15, 16, 17, 18, 24, 30, 31],
+    obstacles: [0, 14, 15, 16, 17, 18, 24, 30, 31],
     computers: {
       one: 2,
-      three: 10,
+      twelve: 10,
       four: 7,
       six: 19,
       seven: 21,
-      eight: 32,
+      thirteen: 26,
       nine: 23
     },
     player: 35,
     exit: 5,
     round: 2,
-    bestScore: 14    
+    bestScore: 15    
   },
    { /// game 3
-    obstacles: [0, 14, 15, 18, 25, 27],
+    obstacles: [0, 5, 14, 15, 25, 27],
     computers: {
       one: 20,
       two: 3,
       three: 11,
       four: 22,
+      five: 18,
       six: 7,
       seven: 2,
       eleven: 12,
@@ -108,6 +109,7 @@ game.gameBoard = function(){
   $("#" + game.level.computers.ten).addClass("computer10-right").removeClass('empty');
   $("#" + game.level.computers.eleven).addClass("computer11-right").removeClass('empty');
   $("#" + game.level.computers.twelve).addClass("computer12-up").removeClass('empty');
+  $("#" + game.level.computers.thirteen).addClass("computer13-up").removeClass('empty');
   $("#best").html(game.level.bestScore);
   $("#which").html(game.level.round);
 
@@ -133,6 +135,7 @@ game.computerMove = function(){
    $("#" + game.level.computers.ten).addClass("computer10-up").removeClass('computer10-right');
    $("#" + game.level.computers.eleven).addClass("computer11-up").removeClass('computer11-right');
    $("#" + game.level.computers.twelve).addClass("computer12-right").removeClass('computer12-up');
+   $("#" + game.level.computers.thirteen).addClass("computer13-down").removeClass('computer13-up');
    game.truthy = false;
  } else {
    $("#" + game.level.computers.one).addClass("computer1-right").removeClass('computer1-down');
@@ -147,6 +150,7 @@ game.computerMove = function(){
    $("#" + game.level.computers.ten).addClass("computer10-right").removeClass('computer10-up');
    $("#" + game.level.computers.eleven).addClass("computer11-right").removeClass('computer11-up');
    $("#" + game.level.computers.twelve).addClass("computer12-up").removeClass('computer12-right');
+   $("#" + game.level.computers.thirteen).addClass("computer13-up").removeClass('computer13-down');
 
    game.truthy = true;
  }
@@ -246,7 +250,7 @@ game.checkForLevel = function(){
 
 // Win conditions
 game.detection = function(i){
-  for (i = 0; i < 13; i++) {
+  for (i = 0; i < 14; i++) {
     var compRight = $('.computer'+i+'-right').attr('id');
     compRight = parseInt(compRight);
     var compLeft = $('.computer'+i+'-left').attr('id');
