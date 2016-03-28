@@ -3,21 +3,26 @@
 <head>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
   <script type="text/javascript" src="./js/app.js"></script>
-  <link href='https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700,300' rel='stylesheet' type='text/css'>
+ <link href='https://fonts.googleapis.com/css?family=Luckiest+Guy' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" type="text/css" href="./css/style.css">
   <title>Blip Man</title>
 </head>
 <body><div id="wrapper">
 <div id="left">
-<h1>Level: <span id="which"></span></h1>
-  <h1>Player Moves</h1>
-  <span id="score">0</span>
+<h1>Level:</h1>
+<span id="which"></span>
+<h1>Player Moves:</h1>
+<span id="score">0</span>
+<h1>Best Moves Possible:</h1>
+<span id="best"></span>
 </div>
+
+
 <div id="right">
 <h1>Game Rules</h1>
-<span>1. Get to the exit in as few moves as possible.</span>
-<span>2. Don't be caught. Enemies can see one space ahead.</span>
-<span>3. If an enemy isn't facing you, you can take them out.</span>
+<span class="rules">1. You are Blip Man. You need to make it across the map undetected.</span>
+<span class="rules">2. Don't be caught. Enemies can see one space ahead.</span>
+<span clas="rules">3. Reach the red target and take them out!</span>
 <h1 id="restart">Restart</h1>
 <audio id="slide" src="./coin_slide.mp3" type="audio/mp3"></audio>
 <audio id="end" src="./end_game.mp3" type="audio/mp3"></audio>

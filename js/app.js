@@ -13,18 +13,21 @@ game.width = 6;
 
 game.levels = [
   { /// game 1
-    obstacles: [4,12,14,15,17,25,28],
+    obstacles: [4,12,14,17,25,28],
     computers: {
       one: 2,
       two: 7,
-      three: 10,
+      three: 9,
       four: 18,
       five: 20,
       six: 31,
-      seven: 23
+      seven: 23,
+      eight: 16
     },
     player: 35,
     exit: 0,
+    round: 1,
+    bestScore: 12,
     borders: { 
       top : [0,1,2,3,4,5],
       bottom : [30,31,32,33,34,35],
@@ -33,19 +36,22 @@ game.levels = [
     }    
   },
    { /// game 2
-    obstacles: [11, 14, 15, 16, 17, 18, 24, 30, 31],
+    obstacles: [14, 15, 16, 17, 18, 24, 30, 31],
     computers: {
       one: 2,
       two: 3,
-      three: 7,
-      four: 9,
+      three: 9,
+      four: 7,
       five: 10,
       six: 19,
       seven: 21,
-      eight: 32
+      eight: 32,
+      nine: 23
     },
     player: 35,
     exit: 5,
+    round: 2,
+    bestScore: 14,
     borders: { 
       top : [0,1,2,3,4,5],
       bottom : [30,31,32,33,34,35],
@@ -61,8 +67,14 @@ game.clearBoard = function() {
   $('.grid').remove();
 }
 
+game.rules = function(){
+  $("body").append("<div><button>Start Game</button></div>");
+  $("button").on("click", game.start);
+}
+
+
 game.gameBoard = function(){
- 
+
   $("body").append("<ul class='grid'></ul>");
  
   for (var i=0; i < (game.width*game.width); i++){
@@ -77,7 +89,6 @@ game.gameBoard = function(){
 
   //// how can i alter this value to filter through my different games.
   game.checkForLevel();
-  $("#which").html("?");
 
 
   $("#" + game.level.player).addClass("player").removeClass('empty');
@@ -89,7 +100,13 @@ game.gameBoard = function(){
   $("#" + game.level.computers.five).addClass("computer5-down").removeClass('empty');
   $("#" + game.level.computers.six).addClass("computer6-right").removeClass('empty');
   $("#" + game.level.computers.seven).addClass("computer7-left").removeClass('empty');
-  // $("#" + level.computers.one).addClass("computer8-left").removeClass('empty');
+  $("#" + game.level.computers.eight).addClass("computer8-down").removeClass('empty');
+  $("#" + game.level.computers.nine).addClass("computer9-left").removeClass('empty');
+  $("#best").html(game.level.bestScore);
+  $("#which").html(game.level.round);
+
+
+
   for (var i = 0; i < game.level.obstacles.length; i++) {
     $("#" + game.level.obstacles[i]).addClass("obstacle").removeClass("empty");
   }
@@ -105,7 +122,8 @@ game.computerMove = function(){
    $("#" + game.level.computers.five).addClass("computer5-right").removeClass('computer5-down');
    $("#" + game.level.computers.six).addClass("computer6-left").removeClass('computer6-right');
    $("#" + game.level.computers.seven).addClass("computer7-down").removeClass('computer7-left');
-   $("#" + game.level.computers.eight).addClass("computer8-right").removeClass('computer8-left');
+   $("#" + game.level.computers.eight).addClass("computer8-left").removeClass('computer8-down');
+   $("#" + game.level.computers.nine).addClass("computer9-down").removeClass('computer9-left');
    game.truthy = false;
  } else {
    $("#" + game.level.computers.one).addClass("computer1-right").removeClass('computer1-down');
@@ -115,7 +133,8 @@ game.computerMove = function(){
    $("#" + game.level.computers.five).addClass("computer5-down").removeClass('computer5-right');
    $("#" + game.level.computers.six).addClass("computer6-right").removeClass('computer6-left');
    $("#" + game.level.computers.seven).addClass("computer7-left").removeClass('computer7-down');
-   $("#" + game.level.computers.eight).addClass("computer8-left").removeClass('computer8-right');
+   $("#" + game.level.computers.eight).addClass("computer8-down").removeClass('computer8-left');
+   $("#" + game.level.computers.nine).addClass("computer9-left").removeClass('computer9-down');
    game.truthy = true;
  }
 }
@@ -136,6 +155,7 @@ game.playerMove = function(){
       } else {
         $($("li")[game.currentPosition]).addClass("player").css("animation-name", "slideInUp").removeClass('empty');
         $('#slide').get(0).play();
+        setTimeout(function() { $($("li")[game.currentPosition]).css("animation-name", "pulse")}, 1000);
         game.moveCounter++;
         game.computerMove();
       }
@@ -151,6 +171,7 @@ game.playerMove = function(){
       } else {
         $($("li")[game.currentPosition]).addClass("player").css("animation-name", "slideInLeft").removeClass('empty');
         $('#slide').get(0).play();
+        setTimeout(function() { $($("li")[game.currentPosition]).css("animation-name", "pulse")}, 1000);
         game.moveCounter++;
         game.computerMove();
       }
@@ -166,6 +187,7 @@ game.playerMove = function(){
       } else {
         $($("li")[game.currentPosition]).addClass("player").css("animation-name", "slideInDown").removeClass('empty');
         $('#slide').get(0).play();
+        setTimeout(function() { $($("li")[game.currentPosition]).css("animation-name", "pulse")}, 1000);
         game.moveCounter++;
         game.computerMove();
       }
@@ -181,15 +203,15 @@ game.playerMove = function(){
       } else {
          $($("li")[game.currentPosition]).addClass("player").css("animation-name", "slideInRight").removeClass('empty');
          $('#slide').get(0).play();
+         setTimeout(function() { $($("li")[game.currentPosition]).css("animation-name", "pulse")}, 1000);
          game.moveCounter++;
          game.computerMove();
       }
     }
- 
+ $("#score").html(game.moveCounter);
     game.detection();
     game.checkForWin();
  
-    $("#score").html(game.moveCounter);
   });
 }
 
@@ -199,10 +221,9 @@ game.checkForWin = function(){
     $("#which").html("Congratulations, you beat the level!");
     $($("li").addClass("won").css("animation-name", "pulse"));
     $('#end').get(0).play();
-    alert("You've completed the level!");
     game.levelNumber++;
+    alert("Target eliminated! Click OK to continue.");
     game.start();
-    // Need to add in a feature to end the game and reset the level here.
   }
 }
 
@@ -228,22 +249,22 @@ game.detection = function(i){
       $($("li").addClass("caught").css("animation-name", "pulse"));
       ($($("li")[game.currentPosition]).addClass("player-caught").css("animation-name", "pulse"));
       $('#busted').get(0).play();
-      alert("You've been caught!");
+      alert("You've been caught! Click restart to try the level again.");
     } else if (playerLocation == (compLeft - 1)) {
       $($("li").addClass("caught").css("animation-name", "pulse"));
       ($($("li")[game.currentPosition]).addClass("player-caught").css("animation-name", "pulse"));
       $('#busted').get(0).play();
-      alert("You've been caught!");
+      alert("You've been caught! Click restart to try the level again.");
     } else if (playerLocation == (compUp - 6)) {
       $($("li").addClass("caught").css("animation-name", "pulse"));
       ($($("li")[game.currentPosition]).addClass("player-caught").css("animation-name", "pulse"));
       $('#busted').get(0).play();
-      alert("You've been caught!");
+      alert("You've been caught! Click restart to try the level again.");
     } else if (playerLocation == (compDown + 6)) {
       $($("li").addClass("caught").css("animation-name", "pulse"));
       ($($("li")[game.currentPosition]).addClass("player-caught").css("animation-name", "pulse"));
       $('#busted').get(0).play();
-      alert("You've been caught!");
+      alert("You've been caught! Click restart to try the level again.");
     } else if (playerLocation === compRight) {
       $($("li")[game.currentPosition]).addClass("player").css("animation-name", "slideInRight").removeClass('.computer'+i+'-right');
     }
@@ -253,6 +274,7 @@ game.detection = function(i){
 
 
 game.start = function(){
+  $("button").hide();
   game.clearBoard();
   game.gameBoard();
   $("#restart" ).on("click", function(){
@@ -265,7 +287,7 @@ game.start = function(){
 
 
 $(function(){
-  game.start();
+  game.rules();
   game.playerMove();
 })
 
