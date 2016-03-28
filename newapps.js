@@ -19,87 +19,30 @@ $(function(){
      this.currentPosition = (width*width)-(1);
      this.moveCounter = 0;
      this.truthy = true;
-     // game.levels[0];
-     // game.levels[1];
-     // game.levels[2];
-     // game.levels[3];
-     game.levels[3];
+     game.levels[0];
 
-     // game.levels[0].player = $("#8").addClass("player").removeClass('empty');
-     // game.levels[0].computers.one =  $("#2").addClass("computer1-down").removeClass('empty');
-     // game.levels[0].computers.two =  $("#3").addClass("computer1-down").removeClass('empty');
-
-     // game.levels[1].player = $("#11").addClass("player").removeClass('empty');
-     // game.levels[1].computers.one =  $("#1").addClass("computer1-down").removeClass('empty');
-     // game.levels[1].computers.two =  $("#1").addClass("computer1-down").removeClass('empty');
-     // game.levels[1].computers.three = $("#4").addClass("computer3-left").removeClass('empty');
-     // game.levels[1].computers.four = $("#6").addClass("computer4-down").removeClass('empty');
-     // game.levels[1].obstacles[0] = $("#3").addClass("obstacle").removeClass('empty');
-
-     // game.levels[2].player = $("#24").addClass("player").removeClass('empty');
-     // game.levels[2].computers.one =  $("#1").addClass("computer1-down").removeClass('empty');
-     // game.levels[2].computers.two =  $("#8").addClass("computer1-down").removeClass('empty');
-     // game.levels[2].computers.three = $("#10").addClass("computer3-left").removeClass('empty');
-     // game.levels[2].computers.four = $("#12").addClass("computer4-down").removeClass('empty');
-     // game.levels[2].computers.five = $("#14").addClass("computer5-down").removeClass('empty');
-     // game.levels[2].computers.six = $("#21").addClass("computer6-right").removeClass('empty');
-     // game.levels[2].obstacles[0] = $("#3").addClass("obstacle").removeClass('empty');
-     // game.levels[2].obstacles[1] = $("#5").addClass("obstacle").removeClass('empty');
-     // game.levels[2].obstacles[2] = $("#18").addClass("obstacle").removeClass('empty');
-
-
-     game.levels[3].player = $("#35").addClass("player").removeClass('empty');
-     game.levels[3].computers.one =  $("#2").addClass("computer1-right").removeClass('empty');
-     game.levels[3].computers.two = $("#7").addClass("computer2-right").removeClass('empty');
-     game.levels[3].computers.three = $("#9").addClass("computer3-down").removeClass('empty');
-     game.levels[3].computers.four = $("#18").addClass("computer4-down").removeClass('empty');
-     game.levels[3].computers.five = $("#20").addClass("computer5-down").removeClass('empty');
-     game.levels[3].computers.six = $("#31").addClass("computer6-right").removeClass('empty');
-     game.levels[3].computers.seven = $("#23").addClass("computer7-left").removeClass('empty');
-     game.levels[3].computers.eight = $("#16").addClass("computer8-left").removeClass('empty');
-     game.levels[3].obstacles[1] = $("#4").addClass("obstacle").removeClass('empty');
-     game.levels[3].obstacles[2] = $("#12").addClass("obstacle").removeClass('empty');
-     game.levels[3].obstacles[5] = $("#17").addClass("obstacle").removeClass('empty');
-     game.levels[3].obstacles[6] = $("#25").addClass("obstacle").removeClass('empty');
-     game.levels[3].obstacles[7] = $("#28").addClass("obstacle").removeClass('empty');
+     game.levels[0].player = $("#35").addClass("player").removeClass('empty');
+     game.levels[0].computers.one =  $("#2").addClass("computer-down").removeClass('empty');
+     game.levels[0].computers.two = $("#7").addClass("computer-right").removeClass('empty');
+     game.levels[0].computers.three = $("#10").addClass("computer-left").removeClass('empty');
+     game.levels[0].computers.four = $("#18").addClass("computer-down").removeClass('empty');
+     game.levels[0].computers.five = $("#20").addClass("computer-down").removeClass('empty');
+     game.levels[0].computers.six = $("#31").addClass("computer-right").removeClass('empty');
+     game.levels[0].computers.seven = $("#23").addClass("computer-left").removeClass('empty');
+     game.levels[0].obstacles[0] = $("#1").addClass("obstacle").removeClass('empty');
+     game.levels[0].obstacles[1] = $("#4").addClass("obstacle").removeClass('empty');
+     game.levels[0].obstacles[2] = $("#12").addClass("obstacle").removeClass('empty');
+     game.levels[0].obstacles[3] = $("#14").addClass("obstacle").removeClass('empty');
+     game.levels[0].obstacles[4] =  $("#15").addClass("obstacle").removeClass('empty');
+     game.levels[0].obstacles[5] = $("#17").addClass("obstacle").removeClass('empty');
+     game.levels[0].obstacles[6] = $("#25").addClass("obstacle").removeClass('empty');
+     game.levels[0].obstacles[7] = $("#28").addClass("obstacle").removeClass('empty');
      
    }
  }
 
  game.levels = [
- { // 3x3
-   obstacles: [],
-   computers: {
-    one: 2,
-    two: 3
-   },
-   player: 8
- },
-
-  {// 4x4
-   obstacles: [3],
-   computers: {
-     one: 1,
-     two: 2,
-     three: 4,
-     four: 6
-   },
-   player: 11
- },
-
-  {// 5x5
-   obstacles: [3, 5, 18],
-   computers: {
-     one: 1,
-     two: 8,
-     three: 10,
-     four: 12,
-     five: 14,
-     six: 21
-   },
-   player: 24
- },
- {// 6x6
+ {
   obstacles: [1,4,12,14,15,17,25,28],
   computers: {
     one: 2,
@@ -221,7 +164,6 @@ game.playerMove = function playerMove(){
    }
 
  }
- game.detection();
  game.checkForWin();
  $("#score").html(game.moveCounter);
 })
@@ -230,26 +172,46 @@ game.playerMove = function playerMove(){
 
 // Function rotates the enemy
 game.computerMove = function computerMove(){
-  if (game.truthy === true){
-    $("#2").addClass("computer1-down").removeClass('computer1-right');
+  // $('li').each(function(i, li) {
+  //   if (!$(this).hasClass('eaten')) {
+  //     switch ($(this).attr("class")) {
+  //       case "computer-right":
+  //         $(this).addClass("computer-down").removeClass("computer-right");
+  //         game.detection("down");
+  //         break;
+  //       case "computer-down":
+  //         $(this).addClass("computer-left").removeClass("computer-down");
+  //         game.detection("left");
+  //         break;
+  //       case "computer-left":
+  //         $(this).addClass("computer-up").removeClass("computer-left");
+  //         game.detection("up");
+  //         break;
+  //       case "computer-up":
+  //         $(this).addClass("computer-right").removeClass("computer-up");
+  //         game.detection("right");
+  //         break;
+  //     }
+  //   }
+  // })
+
+
+  if (game.moveCounter % 2 !== 0){
+    $("#2").addClass("computer1-right").removeClass('computer1-down');
     $("#7").addClass("computer2-down").removeClass('computer2-right');
-    $("#9").addClass("computer3-left").removeClass('computer3-down');
+    $("#10").addClass("computer3-down").removeClass('computer3-left');
     $("#18").addClass("computer4-right").removeClass('computer4-down');
     $("#20").addClass("computer5-right").removeClass('computer5-down');
     $("#31").addClass("computer6-left").removeClass('computer6-right');
     $("#23").addClass("computer7-down").removeClass('computer7-left');
-    $("#16").addClass("computer8-right").removeClass('computer8-left');
-    game.truthy = false;
   } else {
-    $("#2").addClass("computer1-right").removeClass('computer1-down');
+    $("#2").addClass("computer1-down").removeClass('computer1-right');
     $("#7").addClass("computer2-right").removeClass('computer2-down');
-    $("#9").addClass("computer3-down").removeClass('computer3-left');
+    $("#10").addClass("computer3-left").removeClass('computer3-down');
     $("#18").addClass("computer4-down").removeClass('computer4-right');
     $("#20").addClass("computer5-down").removeClass('computer5-right');
     $("#31").addClass("computer6-right").removeClass('computer6-left');
     $("#23").addClass("computer7-left").removeClass('computer7-down');
-    $("#16").addClass("computer8-left").removeClass('computer8-right');
-    game.truthy = true;
   }
 }
 //// I need a way to say that if player has an ID of 2, 7, 10, 18, 20, 31 or 23 then this value needs to be removed.
@@ -265,43 +227,77 @@ game.checkForWin = function checkForWin(){
   }
 }
 
+game.eaten = function eaten(){
+  /// run a function that changes the computer class to empty when the player lands on it and feed this into game detection
+}
+
 
   // Win conditions
-  game.detection = function detection(i){
-    for (i = 0; i < 8; i++) {
-     var compRight = $('.computer'+i+'-right').attr('id');
-     compRight = parseInt(compRight);
-     var compLeft = $('.computer'+i+'-left').attr('id');
-     compLeft = parseInt(compLeft);
-     var compUp = $('.computer'+i+'-up').attr('id');
-     compUp = parseInt(compUp);
-     var compDown = $('.computer'+i+'-down').attr('id');
-     compDown = parseInt(compDown);
-     var playerLocation = $('.player').attr('id');
-     playerLocation = parseInt(playerLocation);
-   // console.log(compDown);
-   // console.log(playerLocation);
+  game.detection = function(position){
+    var compPosition = ".computer-" + position;
+    var playerLocation = $('.player').attr('id');
+    var compElement = $(compPosition);
+    $.each(compElement, function(i, comp) {
+      var compId = $(comp).attr("id");
+      if (playerLocation == compId) {
+        game.eaten();
+      } // Do logic for eating 
+      switch (position) {
+        case "right": 
+          if (playerLocation == compId+1) {
+            $("li").addClass("caught").css("animation-name", "pulse");
+          } 
+          break;
+        case "down": 
+          if (playerLocation == compId+6) {
+          $("li").addClass("caught").css("animation-name", "pulse");
+         } 
+          break;
+        case "left": 
+          if (playerLocation == compId-1) {
+            $("li").addClass("caught").css("animation-name", "pulse");
+          } 
+          break;
+        case "up": 
+          if (playerLocation == compId-6) {
+            $("li").addClass("caught").css("animation-name", "pulse");
+          } 
+          break;
+      }
+    })
 
-   if (playerLocation  == (compRight + 1)) {
-    $($("li").addClass("caught").css("animation-name", "pulse"));
-    $('#busted').get(0).play();
-    alert("You've been caught!");
-  } else if (playerLocation == (compLeft - 1)) {
-    $($("li").addClass("caught").css("animation-name", "pulse"));
-    $('#busted').get(0).play();
-    alert("You've been caught!");
-  } else if (playerLocation == (compUp - 6)) {
-    $($("li").addClass("caught").css("animation-name", "pulse"));
-    $('#busted').get(0).play();
-    alert("You've been caught!");
-  } else if (playerLocation == (compDown + 6)) {
-    $($("li").addClass("caught").css("animation-name", "pulse"));
-    $('#busted').get(0).play();
-    alert("You've been caught!");
-  } else if (playerLocation === compRight) {
-    $($("li")[game.currentPosition]).addClass("player").css("animation-name", "slideInRight").removeClass('.computer'+i+'-right');
-  }
-}
+  //    var compRight = $('.computer-right').attr('id');
+  //    compRight = parseInt(compRight);
+  //    var compLeft = $('.computer-left').attr('id');
+  //    compLeft = parseInt(compLeft);
+  //    var compUp = $('.computer-up').attr('id');
+  //    compUp = parseInt(compUp);
+  //    var compDown = $('.computer-down').attr('id');
+  //    compDown = parseInt(compDown);
+  //    var playerLocation = $('.player').attr('id');
+  //    playerLocation = parseInt(playerLocation);
+  //  console.log(compDown);
+  //  // console.log(playerLocation);
+
+  //  if (playerLocation  == (compRight + 1)) {
+  //   $($("li").addClass("caught").css("animation-name", "pulse"));
+  //   $('#busted').get(0).play();
+  //   alert("You've been caught!");
+  // } else if (playerLocation == (compLeft - 1)) {
+  //   $($("li").addClass("caught").css("animation-name", "pulse"));
+  //   $('#busted').get(0).play();
+  //   alert("You've been caught!");
+  // } else if (playerLocation == (compUp - 6)) {
+  //   $($("li").addClass("caught").css("animation-name", "pulse"));
+  //   $('#busted').get(0).play();
+  //   alert("You've been caught!");
+  // } else if (playerLocation == (compDown + 6)) {
+  //   $($("li").addClass("caught").css("animation-name", "pulse"));
+  //   $('#busted').get(0).play();
+  //   alert("You've been caught!");
+  // } else if (playerLocation === compRight) {
+  //   $($("li")[game.currentPosition]).addClass("player").css("animation-name", "slideInRight").removeClass('.computer'+i+'-right');
+  // }
 }
 
 game.gameBoard();
