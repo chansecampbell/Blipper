@@ -96,7 +96,7 @@ border-radius: 60%;
 border: none;
 background-color: #303F9F;
 /*#90CAF9;*/
-animation-duration: 1s;
+animation-duration: 0.5s;
 }
 
 /*.player {
@@ -140,7 +140,9 @@ background-color: yellow;
 .computer6-right,
 .computer7-right,
 .computer8-right,
-.computer9-right {
+.computer9-right,
+.computer10-right,
+.computer11-right  {
   background-image: url('https://cdn1.iconfinder.com/data/icons/general-9/500/left_arrow-128.png');
   background-size: cover;
   -webkit-transform: rotate(180deg);
@@ -154,7 +156,9 @@ background-color: yellow;
 .computer6-left,
 .computer7-left,
 .computer8-left,
-.computer9-left {
+.computer9-left,
+.computer10-left,
+.computer11-left {
   background-image: url('https://cdn1.iconfinder.com/data/icons/general-9/500/left_arrow-128.png');
   background-size: cover;
 }
@@ -167,7 +171,9 @@ background-color: yellow;
 .computer6-up,
 .computer7-up,
 .computer8-up,
-.computer9-up {
+.computer9-up,
+.computer10-up,
+.computer11-up {
   background-image: url('https://cdn1.iconfinder.com/data/icons/general-9/500/left_arrow-128.png');
   background-size: cover;
   -webkit-transform: rotate(90deg);
@@ -181,7 +187,9 @@ background-color: yellow;
 .computer6-down,
 .computer7-down,
 .computer8-down,
-.computer9-down {
+.computer9-down,
+.computer10-down,
+.computer11-down {
  background-image: url('https://cdn1.iconfinder.com/data/icons/general-9/500/left_arrow-128.png');
  background-size: cover;
  -webkit-transform: rotate(270deg);

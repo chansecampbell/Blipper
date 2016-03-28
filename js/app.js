@@ -27,13 +27,7 @@ game.levels = [
     player: 35,
     exit: 0,
     round: 1,
-    bestScore: 12,
-    borders: { 
-      top : [0,1,2,3,4,5],
-      bottom : [30,31,32,33,34,35],
-      right : [5,11,17,23,29,35],
-      left : [0,6,12,18,24,30]
-    }    
+    bestScore: 12   
   },
    { /// game 2
     obstacles: [14, 15, 16, 17, 18, 24, 30, 31],
@@ -51,17 +45,27 @@ game.levels = [
     player: 35,
     exit: 5,
     round: 2,
-    bestScore: 14,
-    borders: { 
-      top : [0,1,2,3,4,5],
-      bottom : [30,31,32,33,34,35],
-      right : [5,11,17,23,29,35],
-      left : [0,6,12,18,24,30]
-    }    
+    bestScore: 14    
+  },
+   { /// game 3
+    obstacles: [0, 14, 15, 18, 25, 27],
+    computers: {
+      one: 20,
+      two: 3,
+      three: 11,
+      four: 22,
+      six: 7,
+      seven: 2,
+      ten: 33,
+      eleven: 12
+    },
+    player: 35,
+    exit: 30,
+    round: 3,
+    bestScore: 17   
   }
 ];
-  console.log(game.levels[0].borders.bottom[2]);
-// Need to figure out how to restrict movements.
+
 
 game.clearBoard = function() {
   $('.grid').remove();
@@ -102,6 +106,8 @@ game.gameBoard = function(){
   $("#" + game.level.computers.seven).addClass("computer7-left").removeClass('empty');
   $("#" + game.level.computers.eight).addClass("computer8-down").removeClass('empty');
   $("#" + game.level.computers.nine).addClass("computer9-left").removeClass('empty');
+  $("#" + game.level.computers.ten).addClass("computer10-right").removeClass('empty');
+  $("#" + game.level.computers.eleven).addClass("computer11-right").removeClass('empty');
   $("#best").html(game.level.bestScore);
   $("#which").html(game.level.round);
 
@@ -124,6 +130,8 @@ game.computerMove = function(){
    $("#" + game.level.computers.seven).addClass("computer7-down").removeClass('computer7-left');
    $("#" + game.level.computers.eight).addClass("computer8-left").removeClass('computer8-down');
    $("#" + game.level.computers.nine).addClass("computer9-down").removeClass('computer9-left');
+   $("#" + game.level.computers.ten).addClass("computer10-up").removeClass('computer10-right');
+   $("#" + game.level.computers.eleven).addClass("computer11-up").removeClass('computer11-right');
    game.truthy = false;
  } else {
    $("#" + game.level.computers.one).addClass("computer1-right").removeClass('computer1-down');
@@ -135,6 +143,8 @@ game.computerMove = function(){
    $("#" + game.level.computers.seven).addClass("computer7-left").removeClass('computer7-down');
    $("#" + game.level.computers.eight).addClass("computer8-down").removeClass('computer8-left');
    $("#" + game.level.computers.nine).addClass("computer9-left").removeClass('computer9-down');
+   $("#" + game.level.computers.ten).addClass("computer10-right").removeClass('computer10-up');
+   $("#" + game.level.computers.eleven).addClass("computer11-right").removeClass('computer11-up');
    game.truthy = true;
  }
 }
@@ -218,7 +228,7 @@ game.playerMove = function(){
 // Check for a win
 game.checkForWin = function(){
   if ($(".exit").hasClass("player")) {
-    $("#which").html("Congratulations, you beat the level!");
+    // $("#which").html("Congratulations, you beat the level!");
     $($("li").addClass("won").css("animation-name", "pulse"));
     $('#end').get(0).play();
     game.levelNumber++;
@@ -265,9 +275,10 @@ game.detection = function(i){
       ($($("li")[game.currentPosition]).addClass("player-caught").css("animation-name", "pulse"));
       $('#busted').get(0).play();
       alert("You've been caught! Click restart to try the level again.");
-    } else if (playerLocation === compRight) {
-      $($("li")[game.currentPosition]).addClass("player").css("animation-name", "slideInRight").removeClass('.computer'+i+'-right');
-    }
+    } 
+    // else if (playerLocation === compRight) {
+    //   $($("li")[game.currentPosition]).addClass("player").css("animation-name", "slideInRight").removeClass('.computer'+i+'-right');
+    // }
   }
 }
 
