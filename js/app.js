@@ -7,7 +7,7 @@
 //// The game is created as an object
 var game = game || {};
   
-game.levelNumber = 0;
+game.levelNumber = 1;
 game.width = 6;
 
 
@@ -246,7 +246,7 @@ game.checkForLevel = function(){
 
 // Win conditions
 game.detection = function(i){
-  for (i = 0; i < 8; i++) {
+  for (i = 0; i < 13; i++) {
     var compRight = $('.computer'+i+'-right').attr('id');
     compRight = parseInt(compRight);
     var compLeft = $('.computer'+i+'-left').attr('id');
