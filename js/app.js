@@ -33,10 +33,8 @@ game.levels = [
     obstacles: [14, 15, 16, 17, 18, 24, 30, 31],
     computers: {
       one: 2,
-      two: 3,
-      three: 9,
+      three: 10,
       four: 7,
-      five: 10,
       six: 19,
       seven: 21,
       eight: 32,
@@ -56,8 +54,8 @@ game.levels = [
       four: 22,
       six: 7,
       seven: 2,
-      ten: 33,
-      eleven: 12
+      eleven: 12,
+      twelve: 33
     },
     player: 35,
     exit: 30,
@@ -72,8 +70,9 @@ game.clearBoard = function() {
 }
 
 game.rules = function(){
-  $("body").append("<div><button>Start Game</button></div>");
+  $("body").append("<div><h3>Blip Man</h3><button>Welcome to Blip Man! Your mission is a simple one, sneak past the enemy without being detected. Enemies move in two directions so keep an eye on their move patterns and learn from your mistakes. Click anywhere to begin.</button></div>");
   $("button").on("click", game.start);
+
 }
 
 
@@ -108,6 +107,7 @@ game.gameBoard = function(){
   $("#" + game.level.computers.nine).addClass("computer9-left").removeClass('empty');
   $("#" + game.level.computers.ten).addClass("computer10-right").removeClass('empty');
   $("#" + game.level.computers.eleven).addClass("computer11-right").removeClass('empty');
+  $("#" + game.level.computers.twelve).addClass("computer12-up").removeClass('empty');
   $("#best").html(game.level.bestScore);
   $("#which").html(game.level.round);
 
@@ -132,6 +132,7 @@ game.computerMove = function(){
    $("#" + game.level.computers.nine).addClass("computer9-down").removeClass('computer9-left');
    $("#" + game.level.computers.ten).addClass("computer10-up").removeClass('computer10-right');
    $("#" + game.level.computers.eleven).addClass("computer11-up").removeClass('computer11-right');
+   $("#" + game.level.computers.twelve).addClass("computer12-right").removeClass('computer12-up');
    game.truthy = false;
  } else {
    $("#" + game.level.computers.one).addClass("computer1-right").removeClass('computer1-down');
@@ -145,6 +146,8 @@ game.computerMove = function(){
    $("#" + game.level.computers.nine).addClass("computer9-left").removeClass('computer9-down');
    $("#" + game.level.computers.ten).addClass("computer10-right").removeClass('computer10-up');
    $("#" + game.level.computers.eleven).addClass("computer11-right").removeClass('computer11-up');
+   $("#" + game.level.computers.twelve).addClass("computer12-up").removeClass('computer12-right');
+
    game.truthy = true;
  }
 }
@@ -257,22 +260,22 @@ game.detection = function(i){
 
     if (playerLocation  == (compRight + 1)) {
       $($("li").addClass("caught").css("animation-name", "pulse"));
-      ($($("li")[game.currentPosition]).addClass("player-caught").css("animation-name", "pulse"));
+      ($($("li")[game.currentPosition]).addClass("player-caught"));
       $('#busted').get(0).play();
       alert("You've been caught! Click restart to try the level again.");
     } else if (playerLocation == (compLeft - 1)) {
       $($("li").addClass("caught").css("animation-name", "pulse"));
-      ($($("li")[game.currentPosition]).addClass("player-caught").css("animation-name", "pulse"));
+      ($($("li")[game.currentPosition]).addClass("player-caught"));
       $('#busted').get(0).play();
       alert("You've been caught! Click restart to try the level again.");
     } else if (playerLocation == (compUp - 6)) {
       $($("li").addClass("caught").css("animation-name", "pulse"));
-      ($($("li")[game.currentPosition]).addClass("player-caught").css("animation-name", "pulse"));
+      ($($("li")[game.currentPosition]).addClass("player-caught"));
       $('#busted').get(0).play();
       alert("You've been caught! Click restart to try the level again.");
     } else if (playerLocation == (compDown + 6)) {
       $($("li").addClass("caught").css("animation-name", "pulse"));
-      ($($("li")[game.currentPosition]).addClass("player-caught").css("animation-name", "pulse"));
+      ($($("li")[game.currentPosition]).addClass("player-caught"));
       $('#busted').get(0).play();
       alert("You've been caught! Click restart to try the level again.");
     } 
@@ -286,6 +289,7 @@ game.detection = function(i){
 
 game.start = function(){
   $("button").hide();
+  $("h3").hide();
   game.clearBoard();
   game.gameBoard();
   $("#restart" ).on("click", function(){

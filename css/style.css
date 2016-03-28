@@ -1,7 +1,7 @@
 body {
   color: #303F9F;
   background: #E0F7FA;
-  font-family: 'Libre Baskerville', serif;
+  font-family: 'Press Start 2P', cursive;
 }
 
 .wrapper {
@@ -16,7 +16,8 @@ body {
   height: 400px;
   margin-left: 30px;
   margin-top: 100px;
-  padding: 5px;
+  padding: 10px;
+  padding-top: 50px;
   background-color: #B2EBF2; 
 
 /*background-color: #26C6DA;*/
@@ -29,6 +30,7 @@ body {
   margin-right: 30px;
   margin-top: 100px;
   padding: 10px;
+  padding-top: 50px;
   background-color: #B2EBF2; 
 /*  background-color: rgba(38, 198, 218, 0.8);
 */  /*#26C6DA;*/
@@ -42,10 +44,20 @@ body {
 }
 
 h1 {
+  font-family: 'Fjalla One', sans-serif;
   text-align: center;
   font-size: 1.5em;
-  font-weight: 400;
-  color: #26C6DA;
+/*  font-weight: 400;
+*/  color: #26C6DA;
+}
+
+h3 {
+  text-align: center;
+  font-size: 3em;
+  font-family: 'Press Start 2P', cursive;
+  animation-name: pulse;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
 }
 
 span {
@@ -56,8 +68,22 @@ span {
   padding-bottom: 40px;
 }
 
+button {
+  width: 600px;
+  height: 300px;
+  padding: 30px;
+  margin-top: 80px;
+  margin-left: 90px;
+  background: #303F9F;
+  color: #fff;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.6em;
+  word-spacing: 5px;
+  line-height: 20px;
+}
+
 .rules {
-  font-size: 0.8em;
+  font-size: 8px;
   padding: 10px 5px;
 }
 
@@ -97,6 +123,9 @@ border: none;
 background-color: #303F9F;
 /*#90CAF9;*/
 animation-duration: 0.5s;
+animation-name: pulse;
+animation-duration: 1s;
+animation-iteration-count: infinite;
 }
 
 /*.player {
@@ -142,7 +171,8 @@ background-color: yellow;
 .computer8-right,
 .computer9-right,
 .computer10-right,
-.computer11-right  {
+.computer11-right,
+.computer12-right  {
   background-image: url('https://cdn1.iconfinder.com/data/icons/general-9/500/left_arrow-128.png');
   background-size: cover;
   -webkit-transform: rotate(180deg);
@@ -158,7 +188,8 @@ background-color: yellow;
 .computer8-left,
 .computer9-left,
 .computer10-left,
-.computer11-left {
+.computer11-left,
+.computer12-left{
   background-image: url('https://cdn1.iconfinder.com/data/icons/general-9/500/left_arrow-128.png');
   background-size: cover;
 }
@@ -173,7 +204,8 @@ background-color: yellow;
 .computer8-up,
 .computer9-up,
 .computer10-up,
-.computer11-up {
+.computer11-up,
+.computer12-up {
   background-image: url('https://cdn1.iconfinder.com/data/icons/general-9/500/left_arrow-128.png');
   background-size: cover;
   -webkit-transform: rotate(90deg);
@@ -189,7 +221,8 @@ background-color: yellow;
 .computer8-down,
 .computer9-down,
 .computer10-down,
-.computer11-down {
+.computer11-down,
+.computer12-down {
  background-image: url('https://cdn1.iconfinder.com/data/icons/general-9/500/left_arrow-128.png');
  background-size: cover;
  -webkit-transform: rotate(270deg);
