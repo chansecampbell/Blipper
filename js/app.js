@@ -105,7 +105,8 @@ game.levels = [
   ];
 
   game.rules = function(){
-    $("body").append("<div><h3>Blip Man</h3><button>Welcome to Blip Man! Your mission is a simple one, sneak past the enemy without being detected. Enemies move in two directions so keep an eye on their move patterns and learn from your mistakes. Click anywhere to begin.</button></div>");
+    $("body").append("<div><h3>Blipper</h3><button>Welcome to Blipper! You are the Blip Man. Your mission is a simple one, sneak past the enemy without being detected. Enemies move in two directions so keep an eye on their move patterns and learn from your mistakes. Good luck. You may click anywhere to begin.</button></div>");
+    $('#theme').get(0).play();
     $("button").on("click", game.start);
 
   }
@@ -322,10 +323,10 @@ game.checkForWin = function(){
     if (game.levelNumber === 4) {
       alert("You've managed to eliminate all of your targets. Congratulations, your legend will forever remain a blip in history. Stay tuned for more adventures.")
     } else {
-    game.levelNumber++;
-    alert("Target eliminated! Click OK to continue.");
-    game.start();
-  }
+      game.levelNumber++;
+      alert("Target eliminated! Click OK to continue.");
+      game.start();
+    }
   }
 }
 
