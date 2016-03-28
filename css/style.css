@@ -182,7 +182,8 @@ background-color: yellow;
 .computer10-right,
 .computer11-right,
 .computer12-right,
-.computer13-right  {
+.computer13-right,
+.computer14-right {
   background-image: url('https://cdn1.iconfinder.com/data/icons/general-9/500/left_arrow-128.png');
   background-size: cover;
   -webkit-transform: rotate(180deg);
@@ -200,7 +201,8 @@ background-color: yellow;
 .computer10-left,
 .computer11-left,
 .computer12-left,
-.computer13-left{
+.computer13-left,
+.computer14-left {
   background-image: url('https://cdn1.iconfinder.com/data/icons/general-9/500/left_arrow-128.png');
   background-size: cover;
 }
@@ -217,7 +219,8 @@ background-color: yellow;
 .computer10-up,
 .computer11-up,
 .computer12-up,
-.computer13-up {
+.computer13-up,
+.computer14-up {
   background-image: url('https://cdn1.iconfinder.com/data/icons/general-9/500/left_arrow-128.png');
   background-size: cover;
   -webkit-transform: rotate(90deg);
@@ -235,7 +238,8 @@ background-color: yellow;
 .computer10-down,
 .computer11-down,
 .computer12-down,
-.computer13-down {
+.computer13-down,
+.computer14-down {
  background-image: url('https://cdn1.iconfinder.com/data/icons/general-9/500/left_arrow-128.png');
  background-size: cover;
  -webkit-transform: rotate(270deg);

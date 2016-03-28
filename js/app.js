@@ -2,15 +2,13 @@
 ////// 6 x 6 grid 
 ////// Player moves across the squares, but each time you move the computer randomly turns
 ////// You need to avoid being caught by the computer who may turn towards you. If your in the square next to the computer then your caugt and the game is over.
-///// Need to add a randomiser onto the player move which means that the computer chooses one of 4 div classes.
 
-//// The game is created as an object
 var game = game || {};
-  
+
 game.levelNumber = 0;
 game.width = 6;
 
-
+///// Game levels stored in objects
 game.levels = [
   { /// game 1
     obstacles: [4,12,14,17,25,28],
@@ -46,6 +44,24 @@ game.levels = [
     bestScore: 15    
   },
    { /// game 3
+    obstacles: [0, 5, 6, 15, 25, 26, 27],
+    computers: {
+      four: 22,
+      one: 16,
+      six: 10,
+      twelve: 7,
+      five: 18,
+      fourteen: 13,
+      two: 3,
+      ten: 14,
+      twelve: 32 
+    },
+    player: 35,
+    exit: 21,
+    round: 3,
+    bestScore: 14   
+  },
+   { /// game 4
     obstacles: [0, 5, 14, 15, 25, 27],
     computers: {
       one: 20,
@@ -60,65 +76,94 @@ game.levels = [
     },
     player: 35,
     exit: 30,
-    round: 3,
+    round: 4,
     bestScore: 17   
+  },
+   { /// game 5
+    obstacles: [0, 1, 10, 30, 31, 32, 33, 34],
+    computers: {
+      one: 8,
+      two: 13,
+      three: 12,
+      four: 24,
+      five: 14,
+      six: 19,
+      seven: 16,
+      eight: 17,
+      nine: 18,
+      ten: 15,
+      eleven: 20,
+      twelve: 21,
+      thirteen: 22,
+      fourteen: 23
+    },
+    player: 35,
+    exit: 11,
+    round: 5,
+    bestScore: 14   
   }
-];
+  ];
 
+  game.rules = function(){
+    $("body").append("<div><h3>Blip Man</h3><button>Welcome to Blip Man! Your mission is a simple one, sneak past the enemy without being detected. Enemies move in two directions so keep an eye on their move patterns and learn from your mistakes. Click anywhere to begin.</button></div>");
+    $("button").on("click", game.start);
 
-game.clearBoard = function() {
-  $('.grid').remove();
-}
-
-game.rules = function(){
-  $("body").append("<div><h3>Blip Man</h3><button>Welcome to Blip Man! Your mission is a simple one, sneak past the enemy without being detected. Enemies move in two directions so keep an eye on their move patterns and learn from your mistakes. Click anywhere to begin.</button></div>");
-  $("button").on("click", game.start);
-
-}
-
-
-game.gameBoard = function(){
-
-  $("body").append("<ul class='grid'></ul>");
- 
-  for (var i=0; i < (game.width*game.width); i++){
-    $(".grid").append("<li id="+i+" class='empty'></li>");
-    $("ul").css("height", 100*game.width);
-    $("ul").css("width", 100*game.width);
   }
- 
-  this.currentPosition = (game.width*game.width)-(1);
-  this.moveCounter = 0;
-  this.truthy = true;
 
-  //// how can i alter this value to filter through my different games.
-  game.checkForLevel();
-
-
-  $("#" + game.level.player).addClass("player").removeClass('empty');
-  $("#" + game.level.exit).addClass("exit").removeClass('empty');
-  $("#" + game.level.computers.one).addClass("computer1-right").removeClass('empty');
-  $("#" + game.level.computers.two).addClass("computer2-right").removeClass('empty');
-  $("#" + game.level.computers.three).addClass("computer3-left").removeClass('empty');
-  $("#" + game.level.computers.four).addClass("computer4-down").removeClass('empty');
-  $("#" + game.level.computers.five).addClass("computer5-down").removeClass('empty');
-  $("#" + game.level.computers.six).addClass("computer6-right").removeClass('empty');
-  $("#" + game.level.computers.seven).addClass("computer7-left").removeClass('empty');
-  $("#" + game.level.computers.eight).addClass("computer8-down").removeClass('empty');
-  $("#" + game.level.computers.nine).addClass("computer9-left").removeClass('empty');
-  $("#" + game.level.computers.ten).addClass("computer10-right").removeClass('empty');
-  $("#" + game.level.computers.eleven).addClass("computer11-right").removeClass('empty');
-  $("#" + game.level.computers.twelve).addClass("computer12-up").removeClass('empty');
-  $("#" + game.level.computers.thirteen).addClass("computer13-up").removeClass('empty');
-  $("#best").html(game.level.bestScore);
-  $("#which").html(game.level.round);
-
-
-
-  for (var i = 0; i < game.level.obstacles.length; i++) {
-    $("#" + game.level.obstacles[i]).addClass("obstacle").removeClass("empty");
+  game.start = function(){
+    $("button").hide();
+    $("h3").hide();
+    game.clearBoard();
+    game.gameBoard();
+    $("#restart" ).on("click", function(){
+      game.clearBoard();
+      game.gameBoard();
+      game.moveCounter = 0;
+      $("#score").html(game.moveCounter);
+    });
   }
-}
+
+  game.gameBoard = function(){
+
+    $("body").append("<ul class='grid'></ul>");
+
+    for (var i=0; i < (game.width*game.width); i++){
+      $(".grid").append("<li id="+i+" class='empty'></li>");
+      $("ul").css("height", 100*game.width);
+      $("ul").css("width", 100*game.width);
+    }
+
+    this.currentPosition = (game.width*game.width)-(1);
+    this.moveCounter = 0;
+    this.truthy = true;
+
+    game.checkForLevel();
+
+    $("#" + game.level.player).addClass("player").removeClass('empty');
+    $("#" + game.level.exit).addClass("exit").removeClass('empty');
+    $("#" + game.level.computers.one).addClass("computer1-right").removeClass('empty');
+    $("#" + game.level.computers.two).addClass("computer2-right").removeClass('empty');
+    $("#" + game.level.computers.three).addClass("computer3-left").removeClass('empty');
+    $("#" + game.level.computers.four).addClass("computer4-down").removeClass('empty');
+    $("#" + game.level.computers.five).addClass("computer5-down").removeClass('empty');
+    $("#" + game.level.computers.six).addClass("computer6-right").removeClass('empty');
+    $("#" + game.level.computers.seven).addClass("computer7-left").removeClass('empty');
+    $("#" + game.level.computers.eight).addClass("computer8-down").removeClass('empty');
+    $("#" + game.level.computers.nine).addClass("computer9-left").removeClass('empty');
+    $("#" + game.level.computers.ten).addClass("computer10-right").removeClass('empty');
+    $("#" + game.level.computers.eleven).addClass("computer11-right").removeClass('empty');
+    $("#" + game.level.computers.twelve).addClass("computer12-up").removeClass('empty');
+    $("#" + game.level.computers.thirteen).addClass("computer13-up").removeClass('empty');
+    $("#" + game.level.computers.fourteen).addClass("computer14-down").removeClass('empty');
+    $("#best").html(game.level.bestScore);
+    $("#which").html(game.level.round);
+
+
+
+    for (var i = 0; i < game.level.obstacles.length; i++) {
+      $("#" + game.level.obstacles[i]).addClass("obstacle").removeClass("empty");
+    }
+  }
 
 // Function rotates the enemy
 game.computerMove = function(){
@@ -136,6 +181,7 @@ game.computerMove = function(){
    $("#" + game.level.computers.eleven).addClass("computer11-up").removeClass('computer11-right');
    $("#" + game.level.computers.twelve).addClass("computer12-right").removeClass('computer12-up');
    $("#" + game.level.computers.thirteen).addClass("computer13-down").removeClass('computer13-up');
+   $("#" + game.level.computers.fourteen).addClass("computer14-up").removeClass('computer14-down');
    game.truthy = false;
  } else {
    $("#" + game.level.computers.one).addClass("computer1-right").removeClass('computer1-down');
@@ -151,16 +197,15 @@ game.computerMove = function(){
    $("#" + game.level.computers.eleven).addClass("computer11-right").removeClass('computer11-up');
    $("#" + game.level.computers.twelve).addClass("computer12-up").removeClass('computer12-right');
    $("#" + game.level.computers.thirteen).addClass("computer13-up").removeClass('computer13-down');
-
+   $("#" + game.level.computers.fourteen).addClass("computer14-down").removeClass('computer14-up');
    game.truthy = true;
  }
 }
 
 game.playerMove = function(){
-
   $('body').on("keyup", function(e) {
     event.preventDefault();
-    /// UP
+    ////////// UP
     if (e.which === 38) {
       $($("li")[game.currentPosition]).removeClass("player");
       game.currentPosition-=game.width;
@@ -176,81 +221,64 @@ game.playerMove = function(){
         game.moveCounter++;
         game.computerMove();
       }
-    /// RIGHT
-    } else if (e.which === 39) {
-      $($("li")[game.currentPosition]).removeClass("player");
-      game.currentPosition+=1;
+    /////////// RIGHT
+  } else if (e.which === 39) {
+    $($("li")[game.currentPosition]).removeClass("player");
+    game.currentPosition+=1;
 
-      if ($($("li")[game.currentPosition]).hasClass("obstacle")) {
-        console.log("You can't walk here!");
-        game.currentPosition-=1;
-        $($("li")[game.currentPosition]).addClass("player").removeClass("empty");
-      } else {
-        $($("li")[game.currentPosition]).addClass("player").css("animation-name", "slideInLeft").removeClass('empty');
-        $('#slide').get(0).play();
-        setTimeout(function() { $($("li")[game.currentPosition]).css("animation-name", "pulse")}, 1000);
-        game.moveCounter++;
-        game.computerMove();
-      }
-    /// DOWN
-    } else if (e.which === 40) {
-      $($("li")[game.currentPosition]).removeClass("player");
-      game.currentPosition+=game.width;
-
-      if ($($("li")[game.currentPosition]).hasClass("obstacle")) {
-        console.log("You can't walk here!");
-        game.currentPosition-=game.width;
-        $($("li")[game.currentPosition]).addClass("player").removeClass("empty");
-      } else {
-        $($("li")[game.currentPosition]).addClass("player").css("animation-name", "slideInDown").removeClass('empty');
-        $('#slide').get(0).play();
-        setTimeout(function() { $($("li")[game.currentPosition]).css("animation-name", "pulse")}, 1000);
-        game.moveCounter++;
-        game.computerMove();
-      }
-    //// LEFT
-    } else if (e.which === 37) {
-      $($("li")[game.currentPosition]).removeClass("player");
+    if ($($("li")[game.currentPosition]).hasClass("obstacle")) {
+      console.log("You can't walk here!");
       game.currentPosition-=1;
-
-      if ($($("li")[game.currentPosition]).hasClass("obstacle")) {
-        console.log("You can't walk here!");
-        game.currentPosition+=1;
-        $($("li")[game.currentPosition]).addClass("player").removeClass("empty");
-      } else {
-         $($("li")[game.currentPosition]).addClass("player").css("animation-name", "slideInRight").removeClass('empty');
-         $('#slide').get(0).play();
-         setTimeout(function() { $($("li")[game.currentPosition]).css("animation-name", "pulse")}, 1000);
-         game.moveCounter++;
-         game.computerMove();
-      }
+      $($("li")[game.currentPosition]).addClass("player").removeClass("empty");
+    } else {
+      $($("li")[game.currentPosition]).addClass("player").css("animation-name", "slideInLeft").removeClass('empty');
+      $('#slide').get(0).play();
+      setTimeout(function() { $($("li")[game.currentPosition]).css("animation-name", "pulse")}, 1000);
+      game.moveCounter++;
+      game.computerMove();
     }
+    ///////// DOWN
+  } else if (e.which === 40) {
+    $($("li")[game.currentPosition]).removeClass("player");
+    game.currentPosition+=game.width;
+
+    if ($($("li")[game.currentPosition]).hasClass("obstacle")) {
+      console.log("You can't walk here!");
+      game.currentPosition-=game.width;
+      $($("li")[game.currentPosition]).addClass("player").removeClass("empty");
+    } else {
+      $($("li")[game.currentPosition]).addClass("player").css("animation-name", "slideInDown").removeClass('empty');
+      $('#slide').get(0).play();
+      setTimeout(function() { $($("li")[game.currentPosition]).css("animation-name", "pulse")}, 1000);
+      game.moveCounter++;
+      game.computerMove();
+    }
+    /////////// LEFT
+  } else if (e.which === 37) {
+    $($("li")[game.currentPosition]).removeClass("player");
+    game.currentPosition-=1;
+
+    if ($($("li")[game.currentPosition]).hasClass("obstacle")) {
+      console.log("You can't walk here!");
+      game.currentPosition+=1;
+      $($("li")[game.currentPosition]).addClass("player").removeClass("empty");
+    } else {
+     $($("li")[game.currentPosition]).addClass("player").css("animation-name", "slideInRight").removeClass('empty');
+     $('#slide').get(0).play();
+     setTimeout(function() { $($("li")[game.currentPosition]).css("animation-name", "pulse")}, 1000);
+     game.moveCounter++;
+     game.computerMove();
+   }
+ }
  $("#score").html(game.moveCounter);
-    game.detection();
-    game.checkForWin();
- 
-  });
+ game.detection();
+ game.checkForWin();
+});
 }
 
-// Check for a win
-game.checkForWin = function(){
-  if ($(".exit").hasClass("player")) {
-    // $("#which").html("Congratulations, you beat the level!");
-    $($("li").addClass("won").css("animation-name", "pulse"));
-    $('#end').get(0).play();
-    game.levelNumber++;
-    alert("Target eliminated! Click OK to continue.");
-    game.start();
-  }
-}
-
-game.checkForLevel = function(){
-  game.level = game.levels[game.levelNumber];
-}
-
-// Win conditions
+// Lose conditions
 game.detection = function(i){
-  for (i = 0; i < 14; i++) {
+  for (i = 0; i < 15; i++) {
     var compRight = $('.computer'+i+'-right').attr('id');
     compRight = parseInt(compRight);
     var compLeft = $('.computer'+i+'-left').attr('id');
@@ -283,27 +311,33 @@ game.detection = function(i){
       $('#busted').get(0).play();
       alert("You've been caught! Click restart to try the level again.");
     } 
-    // else if (playerLocation === compRight) {
-    //   $($("li")[game.currentPosition]).addClass("player").css("animation-name", "slideInRight").removeClass('.computer'+i+'-right');
-    // }
   }
 }
 
-
-
-game.start = function(){
-  $("button").hide();
-  $("h3").hide();
-  game.clearBoard();
-  game.gameBoard();
-  $("#restart" ).on("click", function(){
-  game.clearBoard();
-  game.gameBoard();
-  game.moveCounter = 0;
-  $("#score").html(game.moveCounter);
-  });
+////// Check for a win
+game.checkForWin = function(){
+  if ($(".exit").hasClass("player")) {
+    $($("li").addClass("won").css("animation-name", "pulse"));
+    $('#end').get(0).play();
+    if (game.levelNumber === 4) {
+      alert("You've managed to eliminate all of your targets. Congratulations, your legend will forever remain a blip in history. Stay tuned for more adventures.")
+    } else {
+    game.levelNumber++;
+    alert("Target eliminated! Click OK to continue.");
+    game.start();
+  }
+  }
 }
 
+///// Check for level number
+game.checkForLevel = function(){
+  game.level = game.levels[game.levelNumber];
+}
+
+//// Clear board
+game.clearBoard = function() {
+  $('.grid').remove();
+}
 
 $(function(){
   game.rules();
