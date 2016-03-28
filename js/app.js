@@ -15,6 +15,9 @@ $(function(){
    $("body").append("<ul class='grid'></ul>");
    for (var i=0; i < (width*width); i++){
      $(".grid").append("<li id="+i+" class='empty'></li>");
+     $("ul").css("height", 600);
+     $("ul").css("width", 600);
+
      
      this.currentPosition = (width*width)-(1);
      this.moveCounter = 0;
@@ -110,46 +113,43 @@ $(function(){
     six: 31,
     seven: 23
   },
-  player: 35
+  player: 35,
+  borders: { 
+    top : [0,1,2,3,4,5],
+    bottom : [30,31,32,33,34,35],
+    right : [5,11,17,23,29,35],
+    left : [0,6,12,18,24,30]
 },
-]
-
-  // game.start = function(){
-  //   this.obstacle = $("obstacle");
-  //   this.player = $("player");
-  //   this.moveCounter = 0;
-  //   this.truthy = true;
-  //   this.currentPosition = (width*width)-(1);
-  //   this.$squares = $('li');
-  //   this.borders = { // else var borders =
-  //     top : [0,1,2,3,4,5],
-  //     bottom : [30,31,32,33,34,35],
-  //     right : [5,11,17,23,29,35],
-  //     left : [0,6,12,18,24,30] };
-
-  // }
+}
+];
+console.log(game.levels[3].borders.bottom[2]);
+// Need to figure out how to restrict movements.
 
 
-// This checks the value of current positions number against an array. Isnt yet integrated
-// Have a look at what position is doing
-// game.checkBorders = function checkBorders(currentPosition, num){
-//   $.each(game.borders.left, function(key, value){
-//     if (currentPosition === value) {
-//       $($("li")[game.currentPosition]).removeClass("player");
-//      game.currentPosition += num;
-//      $($("li")[game.currentPosition]).addClass("player").removeClass("empty");
-//      } 
-//      console.log("out of bounds");
-//    })
-//  }
-
-// }
-// game.checkBorders(30);
-// When you click right, new position is current position +1
-// When you click up, new position is current position - grid width
-// When you click left, new position is current position -1
-// When you click down, new position is current position + grid width
-
+// Function rotates the enemy
+game.computerMove = function computerMove(){
+  if (game.truthy === true){
+    game.levels[3].computers.one.addClass("computer1-down").removeClass('computer1-right');
+    game.levels[3].computers.two.addClass("computer2-down").removeClass('computer2-right');
+   game.levels[3].computers.three.addClass("computer3-left").removeClass('computer3-down');
+    game.levels[3].computers.four.addClass("computer4-right").removeClass('computer4-down');
+    game.levels[3].computers.five.addClass("computer5-right").removeClass('computer5-down');
+    game.levels[3].computers.six.addClass("computer6-left").removeClass('computer6-right');
+    game.levels[3].computers.seven.addClass("computer7-down").removeClass('computer7-left');
+    game.levels[3].computers.eight.addClass("computer8-right").removeClass('computer8-left');
+    game.truthy = false;
+  } else {
+    game.levels[3].computers.one.addClass("computer1-right").removeClass('computer1-down');
+   game.levels[3].computers.two.addClass("computer2-right").removeClass('computer2-down');
+    game.levels[3].computers.three.addClass("computer3-down").removeClass('computer3-left');
+  game.levels[3].computers.four.addClass("computer4-down").removeClass('computer4-right');
+   game.levels[3].computers.five.addClass("computer5-down").removeClass('computer5-right');
+   game.levels[3].computers.six.addClass("computer6-right").removeClass('computer6-left');
+  game.levels[3].computers.seven.addClass("computer7-left").removeClass('computer7-down');
+  game.levels[3].computers.eight.addClass("computer8-left").removeClass('computer8-right');
+    game.truthy = true;
+  }
+}
 
 game.playerMove = function playerMove(){
 
@@ -228,31 +228,6 @@ game.playerMove = function playerMove(){
 
 }
 
-// Function rotates the enemy
-game.computerMove = function computerMove(){
-  if (game.truthy === true){
-    $("#2").addClass("computer1-down").removeClass('computer1-right');
-    $("#7").addClass("computer2-down").removeClass('computer2-right');
-    $("#9").addClass("computer3-left").removeClass('computer3-down');
-    $("#18").addClass("computer4-right").removeClass('computer4-down');
-    $("#20").addClass("computer5-right").removeClass('computer5-down');
-    $("#31").addClass("computer6-left").removeClass('computer6-right');
-    $("#23").addClass("computer7-down").removeClass('computer7-left');
-    $("#16").addClass("computer8-right").removeClass('computer8-left');
-    game.truthy = false;
-  } else {
-    $("#2").addClass("computer1-right").removeClass('computer1-down');
-    $("#7").addClass("computer2-right").removeClass('computer2-down');
-    $("#9").addClass("computer3-down").removeClass('computer3-left');
-    $("#18").addClass("computer4-down").removeClass('computer4-right');
-    $("#20").addClass("computer5-down").removeClass('computer5-right');
-    $("#31").addClass("computer6-right").removeClass('computer6-left');
-    $("#23").addClass("computer7-left").removeClass('computer7-down');
-    $("#16").addClass("computer8-left").removeClass('computer8-right');
-    game.truthy = true;
-  }
-}
-//// I need a way to say that if player has an ID of 2, 7, 10, 18, 20, 31 or 23 then this value needs to be removed.
 
 // Check for a win
 game.checkForWin = function checkForWin(){
@@ -279,8 +254,6 @@ game.checkForWin = function checkForWin(){
      compDown = parseInt(compDown);
      var playerLocation = $('.player').attr('id');
      playerLocation = parseInt(playerLocation);
-   // console.log(compDown);
-   // console.log(playerLocation);
 
    if (playerLocation  == (compRight + 1)) {
     $($("li").addClass("caught").css("animation-name", "pulse"));
@@ -305,7 +278,6 @@ game.checkForWin = function checkForWin(){
 }
 
 game.gameBoard();
- // game.start();
  game.playerMove();
 })
 

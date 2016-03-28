@@ -9,7 +9,7 @@ var game = game || {};
 
 $(function(){
 
-  var width = 3;
+  var width = 4;
 
   game.gameBoard = function gameBoard(){
    $("body").append("<ul class='grid'></ul>");
@@ -19,49 +19,16 @@ $(function(){
      this.currentPosition = (width*width)-(1);
      this.moveCounter = 0;
      this.truthy = true;
-     game.levels[0];
-     // game.levels[1];
-     // game.levels[2];
-     // game.levels[3];
-     // game.levels[3];
+    
+     game.levels[1];
 
-     game.levels[0].player = $("#8").addClass("player").removeClass('empty');
-     game.levels[0].computers.one =  $("#2").addClass("computer1-down").removeClass('empty');
-     game.levels[0].computers.two =  $("#3").addClass("computer2-down").removeClass('empty');
+    game.levels[1].player = $("#11").addClass("player").removeClass('empty');
+    game.levels[1].computers.one =  $("#1").addClass("computer1-down").removeClass('empty');
+    game.levels[1].computers.two =  $("#1").addClass("computer1-down").removeClass('empty');
+    game.levels[1].computers.three = $("#4").addClass("computer3-left").removeClass('empty');
+    game.levels[1].computers.four = $("#6").addClass("computer4-down").removeClass('empty');
+    game.levels[1].obstacles[0] = $("#3").addClass("obstacle").removeClass('empty');
 
-     // game.levels[1].player = $("#11").addClass("player").removeClass('empty');
-     // game.levels[1].computers.one =  $("#1").addClass("computer1-down").removeClass('empty');
-     // game.levels[1].computers.two =  $("#1").addClass("computer1-down").removeClass('empty');
-     // game.levels[1].computers.three = $("#4").addClass("computer3-left").removeClass('empty');
-     // game.levels[1].computers.four = $("#6").addClass("computer4-down").removeClass('empty');
-     // game.levels[1].obstacles[0] = $("#3").addClass("obstacle").removeClass('empty');
-
-     // game.levels[2].player = $("#24").addClass("player").removeClass('empty');
-     // game.levels[2].computers.one =  $("#1").addClass("computer1-down").removeClass('empty');
-     // game.levels[2].computers.two =  $("#8").addClass("computer1-down").removeClass('empty');
-     // game.levels[2].computers.three = $("#10").addClass("computer3-left").removeClass('empty');
-     // game.levels[2].computers.four = $("#12").addClass("computer4-down").removeClass('empty');
-     // game.levels[2].computers.five = $("#14").addClass("computer5-down").removeClass('empty');
-     // game.levels[2].computers.six = $("#21").addClass("computer6-right").removeClass('empty');
-     // game.levels[2].obstacles[0] = $("#3").addClass("obstacle").removeClass('empty');
-     // game.levels[2].obstacles[1] = $("#5").addClass("obstacle").removeClass('empty');
-     // game.levels[2].obstacles[2] = $("#18").addClass("obstacle").removeClass('empty');
-
-
-     // game.levels[3].player = $("#35").addClass("player").removeClass('empty');
-     // game.levels[3].computers.one =  $("#2").addClass("computer1-right").removeClass('empty');
-     // game.levels[3].computers.two = $("#7").addClass("computer2-right").removeClass('empty');
-     // game.levels[3].computers.three = $("#9").addClass("computer3-down").removeClass('empty');
-     // game.levels[3].computers.four = $("#18").addClass("computer4-down").removeClass('empty');
-     // game.levels[3].computers.five = $("#20").addClass("computer5-down").removeClass('empty');
-     // game.levels[3].computers.six = $("#31").addClass("computer6-right").removeClass('empty');
-     // game.levels[3].computers.seven = $("#23").addClass("computer7-left").removeClass('empty');
-     // game.levels[3].computers.eight = $("#16").addClass("computer8-left").removeClass('empty');
-     // game.levels[3].obstacles[1] = $("#4").addClass("obstacle").removeClass('empty');
-     // game.levels[3].obstacles[2] = $("#12").addClass("obstacle").removeClass('empty');
-     // game.levels[3].obstacles[5] = $("#17").addClass("obstacle").removeClass('empty');
-     // game.levels[3].obstacles[6] = $("#25").addClass("obstacle").removeClass('empty');
-     // game.levels[3].obstacles[7] = $("#28").addClass("obstacle").removeClass('empty');
      
    }
  }
@@ -231,12 +198,16 @@ game.playerMove = function playerMove(){
 // Function rotates the enemy
 game.computerMove = function computerMove(){
   if (game.truthy === true){
-  $("#2").addClass("computer1-down").removeClass('computer1-left');
-  $("#2").addClass("computer2-down").removeClass('computer2-left');
+ $("#1").addClass("computer1-left").removeClass("computer1-down");
+ $("#2").addClass("computer2-down").removeClass("computer1-left");
+ $("#4").addClass("computer3-down").removeClass("computer3-right");
+ $("#6").addClass("computer-right").removeClass("computer4-down");
     game.truthy = false;
   } else {
-    $("#2").addClass("computer1-left").removeClass('computer1-down');
-    $("#2").addClass("computer2-left").removeClass('computer2-down');
+   $("#1").addClass("computer1-down").removeClass("computer1-left");
+   $("#2").addClass("computer2-left").removeClass("computer1-down");
+   $("#4").addClass("computer3-right").removeClass("computer3-down");
+   $("#6").addClass("computer-down").removeClass("computer4-right");
     game.truthy = true;
   }
 }
