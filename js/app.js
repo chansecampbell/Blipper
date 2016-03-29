@@ -126,7 +126,7 @@ game.levels = [
 
   game.gameBoard = function(){
 
-    $("body").append("<ul class='grid'></ul>");
+    $("#wrapper").append("<ul class='grid'></ul>");
 
     for (var i=0; i < (game.width*game.width); i++){
       $(".grid").append("<li id="+i+" class='empty'></li>");
@@ -223,10 +223,10 @@ game.playerMove = function(){
         console.log("You can't walk here!");
         game.currentPosition+=game.width;
         $($("li")[game.currentPosition]).addClass("player").removeClass("empty");
-      } else if ($($("li")[game.currentPosition]) > $("li")[0]) {
-      console.log("You can't walk here!");
-      game.currentPosition+=game.width;
-      $($("li")[game.currentPosition]).addClass("player").removeClass("empty");
+      // } else if ($($("li")[game.currentPosition]) < $("li")[0]) {
+      // console.log("You can't walk here!");
+      // game.currentPosition+=game.width;
+      // $($("li")[game.currentPosition]).addClass("player").removeClass("empty");
      }  else {
         $($("li")[game.currentPosition]).addClass("player").css("animation-name", "slideInUp").removeClass('empty');
         $('#slide').get(0).play();
@@ -249,8 +249,7 @@ game.playerMove = function(){
       setTimeout(function() { $($("li")[game.currentPosition]).css("animation-name", "pulse")}, 1000);
       game.moveCounter++;
       game.computerMove();
-    }
-    ///////// DOWN       bottom : [30,31,32,33,34,35],
+    } ////////// DOWN
   } else if (e.which === 40) {
     $($("li")[game.currentPosition]).removeClass("player");
     game.currentPosition+=game.width;
@@ -259,11 +258,13 @@ game.playerMove = function(){
       console.log("You can't walk here!");
       game.currentPosition-=game.width;
       $($("li")[game.currentPosition]).addClass("player").removeClass("empty");
-    } else if ($($("li")[game.currentPosition]) > $("li")[35]) {
-      console.log("You can't walk here!");
-      game.currentPosition-=game.width;
-      $($("li")[game.currentPosition]).addClass("player").removeClass("empty");
-   } else {
+    } 
+   //  else if ($($("li")[game.currentPosition]) > $("li")[35]) {
+   //    console.log("You can't walk here!");
+   //    game.currentPosition-=game.width;
+   //    $($("li")[game.currentPosition]).addClass("player").removeClass("empty");
+   // } 
+   else {
       $($("li")[game.currentPosition]).addClass("player").css("animation-name", "slideInDown").removeClass('empty');
       $('#slide').get(0).play();
       setTimeout(function() { $($("li")[game.currentPosition]).css("animation-name", "pulse")}, 1000);
@@ -292,6 +293,21 @@ game.playerMove = function(){
  game.checkForWin();
 });
 }
+
+
+///////// Prevents scrolling from happening when keyup is used
+var ar=new Array(33,34,35,36,37,38,39,40);
+
+$(document).keydown(function(e) {
+     var key = e.which;
+      //console.log(key);
+      //if(key==35 || key == 36 || key == 37 || key == 39)
+      if($.inArray(key,ar) > -1) {
+          e.preventDefault();
+          return false;
+      }
+      return true;
+});
 
 //////// Lose conditions
 game.detection = function(i){
