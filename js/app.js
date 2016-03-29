@@ -134,12 +134,6 @@ game.levels = [
       $("ul").css("width", 100*game.width);
     }
 
-    //   this.borders = { // else var borders =
-    //     top : [0,1,2,3,4,5],
-    //     bottom : [30,31,32,33,34,35],
-    //     right : [5,11,17,23,29,35],
-    //     left : [0,6,12,18,24,30] };
-
     this.currentPosition = (game.width*game.width)-(1);
     this.moveCounter = 0;
     this.truthy = true;
@@ -213,32 +207,45 @@ game.computerMove = function(){
 game.playerMove = function(){
   $('body').on("keyup", function(e) {
     event.preventDefault();
+
+    var previousPosition = game.currentPosition;
+
     ////////// UP
     if (e.which === 38) {
-      $($("li")[game.currentPosition]).removeClass("player");
-      game.currentPosition-=game.width;
-      console.log(game.currentPosition);
+      game.currentPosition -= game.width;
+
+      //// Prevents movement outside the boundaries.
+      if (game.currentPosition < 0) {
+        game.currentPosition = previousPosition;
+        return true;        
+      }
+
+      $($("li")[previousPosition]).removeClass("player");
 
       if ($($("li")[game.currentPosition]).hasClass("obstacle")) {
         console.log("You can't walk here!");
         game.currentPosition+=game.width;
         $($("li")[game.currentPosition]).addClass("player").removeClass("empty");
-      // } else if ($($("li")[game.currentPosition]) < $("li")[0]) {
-      // console.log("You can't walk here!");
-      // game.currentPosition+=game.width;
-      // $($("li")[game.currentPosition]).addClass("player").removeClass("empty");
-     }  else {
-        $($("li")[game.currentPosition]).addClass("player").css("animation-name", "slideInUp").removeClass('empty');
-        $('#slide').get(0).play();
-        setTimeout(function() { $($("li")[game.currentPosition]).css("animation-name", "pulse")}, 1000);
-        game.moveCounter++;
-        game.computerMove();
-      }
+    
+    }  else {
+      $($("li")[game.currentPosition]).addClass("player").css("animation-name", "slideInUp").removeClass('empty');
+      $('#slide').get(0).play();
+      setTimeout(function() { $($("li")[game.currentPosition]).css("animation-name", "pulse")}, 1000);
+      game.moveCounter++;
+      game.computerMove();
+    }
     /////////// RIGHT
   } else if (e.which === 39) {
-    $($("li")[game.currentPosition]).removeClass("player");
-    game.currentPosition+=1;
+    game.currentPosition += 1;
 
+    //// Prevents movement outside the boundaries.
+    if (previousPosition % game.width === game.width-1 && game.currentPosition % game.width === 0) {
+      game.currentPosition = previousPosition;
+      return true;        
+    }
+
+    $($("li")[previousPosition]).removeClass("player");
+    
     if ($($("li")[game.currentPosition]).hasClass("obstacle")) {
       console.log("You can't walk here!");
       game.currentPosition-=1;
@@ -251,20 +258,23 @@ game.playerMove = function(){
       game.computerMove();
     } ////////// DOWN
   } else if (e.which === 40) {
-    $($("li")[game.currentPosition]).removeClass("player");
+
+    //// Prevents movement outside the boundaries.
     game.currentPosition+=game.width;
+
+    if (game.currentPosition > game.width*game.width) {
+      game.currentPosition = previousPosition;
+      return true;        
+    }
+
+    $($("li")[previousPosition]).removeClass("player");
 
     if ($($("li")[game.currentPosition]).hasClass("obstacle")) {
       console.log("You can't walk here!");
       game.currentPosition-=game.width;
       $($("li")[game.currentPosition]).addClass("player").removeClass("empty");
     }  
-   //  else if ($($("li")[game.currentPosition]) > $("li")[35]) {
-   //    console.log("You can't walk here!");
-   //    game.currentPosition-=game.width;
-   //    $($("li")[game.currentPosition]).addClass("player").removeClass("empty");
-   // } 
-   else {
+    else {
       $($("li")[game.currentPosition]).addClass("player").css("animation-name", "slideInDown").removeClass('empty');
       $('#slide').get(0).play();
       setTimeout(function() { $($("li")[game.currentPosition]).css("animation-name", "pulse")}, 1000);
@@ -273,9 +283,16 @@ game.playerMove = function(){
     }
     /////////// LEFT
   } else if (e.which === 37) {
-    $($("li")[game.currentPosition]).removeClass("player");
     game.currentPosition-=1;
 
+    //// Prevents movement outside the boundaries.
+    if (game.currentPosition % game.width === game.width-1 && previousPosition % game.width === 0) {
+      game.currentPosition = previousPosition;
+      return true;        
+    }
+
+    $($("li")[previousPosition]).removeClass("player");
+    
     if ($($("li")[game.currentPosition]).hasClass("obstacle")) {
       console.log("You can't walk here!");
       game.currentPosition+=1;
@@ -299,15 +316,15 @@ game.playerMove = function(){
 var ar=new Array(33,34,35,36,37,38,39,40);
 
 $(document).keydown(function(e) {
-     var key = e.which;
+ var key = e.which;
       //console.log(key);
       //if(key==35 || key == 36 || key == 37 || key == 39)
       if($.inArray(key,ar) > -1) {
-          e.preventDefault();
-          return false;
+        e.preventDefault();
+        return false;
       }
       return true;
-});
+    });
 
 //////// Lose conditions
 game.detection = function(i){
