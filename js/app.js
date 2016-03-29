@@ -227,14 +227,14 @@ game.playerMove = function(){
         console.log("You can't walk here!");
         game.currentPosition+=game.width;
         $($("li")[game.currentPosition]).addClass("player").removeClass("empty");
-    
-    }  else {
-      $($("li")[game.currentPosition]).addClass("player").css("animation-name", "slideInUp").removeClass('empty');
-      $('#slide').get(0).play();
-      setTimeout(function() { $($("li")[game.currentPosition]).css("animation-name", "pulse")}, 1000);
-      game.moveCounter++;
-      game.computerMove();
-    }
+        
+      }  else {
+        $($("li")[game.currentPosition]).addClass("player").css("animation-name", "slideInUp").removeClass('empty');
+        $('#slide').get(0).play();
+        setTimeout(function() { $($("li")[game.currentPosition]).css("animation-name", "pulse")}, 1000);
+        game.moveCounter++;
+        game.computerMove();
+      }
     /////////// RIGHT
   } else if (e.which === 39) {
     game.currentPosition += 1;
@@ -343,24 +343,28 @@ game.detection = function(i){
 
     if (playerLocation  == (compRight + 1)) {
       $($("li").addClass("caught").css("animation-name", "pulse"));
+      $('.computer'+i+'-right').addClass("player-caught");
       ($($("li")[game.currentPosition]).addClass("player-caught"));
       $('#busted').get(0).play();
-      alert("You've been caught! Click restart to try the level again.");
+      return alert("You've been caught! Click restart to try the level again.");
     } else if (playerLocation == (compLeft - 1)) {
       $($("li").addClass("caught").css("animation-name", "pulse"));
       ($($("li")[game.currentPosition]).addClass("player-caught"));
+      $('.computer'+i+'-left').addClass("player-caught");
       $('#busted').get(0).play();
-      alert("You've been caught! Click restart to try the level again.");
+      return alert("You've been caught! Click restart to try the level again.");
     } else if (playerLocation == (compUp - 6)) {
       $($("li").addClass("caught").css("animation-name", "pulse"));
       ($($("li")[game.currentPosition]).addClass("player-caught"));
+      $('.computer'+i+'-up').addClass("player-caught");
       $('#busted').get(0).play();
-      alert("You've been caught! Click restart to try the level again.");
+      return alert("You've been caught! Click restart to try the level again.");
     } else if (playerLocation == (compDown + 6)) {
       $($("li").addClass("caught").css("animation-name", "pulse"));
       ($($("li")[game.currentPosition]).addClass("player-caught"));
+      $('.computer'+i+'-down').addClass("player-caught");
       $('#busted').get(0).play();
-      alert("You've been caught! Click restart to try the level again.");
+      return alert("You've been caught! Click restart to try the level again.");
     } 
   }
 }
@@ -372,6 +376,7 @@ game.checkForWin = function(){
     $('#end').get(0).play();
     if (game.levelNumber === 4) {
       alert("You've managed to eliminate all of your targets. Congratulations, your legend will forever remain a blip in history. Stay tuned for more adventures.")
+      $('#theme').get(0).play();
     } else {
       game.levelNumber++;
       alert("Target eliminated! Click OK to continue.");
