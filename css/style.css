@@ -516,3 +516,35 @@ li {
   -webkit-animation-name: pulse;
   animation-name: pulse;
 }
+
+@media only screen and (max-width: 960px) {
+  ul {
+    width: 500px;
+    height: 500px;
+  }
+
+  li {
+    width: 81.1px;
+    height: 81.1px;
+  }
+
+}
+
+@media only screen and (max-width: 640px) {
+
+  #left,
+  #right {
+    display: none;
+  }
+
+  ul {
+
+    width: 400px;
+    height: 400px;
+  }
+
+  li {
+    width: 64.2px;
+    height: 64.2px;
+  }
+}

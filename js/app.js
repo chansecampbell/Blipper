@@ -134,6 +134,12 @@ game.levels = [
       $("ul").css("width", 100*game.width);
     }
 
+    //   this.borders = { // else var borders =
+    //     top : [0,1,2,3,4,5],
+    //     bottom : [30,31,32,33,34,35],
+    //     right : [5,11,17,23,29,35],
+    //     left : [0,6,12,18,24,30] };
+
     this.currentPosition = (game.width*game.width)-(1);
     this.moveCounter = 0;
     this.truthy = true;
@@ -203,6 +209,7 @@ game.computerMove = function(){
  }
 }
 
+////// This is the key press event listener for player movement
 game.playerMove = function(){
   $('body').on("keyup", function(e) {
     event.preventDefault();
@@ -210,12 +217,17 @@ game.playerMove = function(){
     if (e.which === 38) {
       $($("li")[game.currentPosition]).removeClass("player");
       game.currentPosition-=game.width;
+      console.log(game.currentPosition);
 
       if ($($("li")[game.currentPosition]).hasClass("obstacle")) {
         console.log("You can't walk here!");
         game.currentPosition+=game.width;
         $($("li")[game.currentPosition]).addClass("player").removeClass("empty");
-      } else {
+      } else if ($($("li")[game.currentPosition]) > $("li")[0]) {
+      console.log("You can't walk here!");
+      game.currentPosition+=game.width;
+      $($("li")[game.currentPosition]).addClass("player").removeClass("empty");
+     }  else {
         $($("li")[game.currentPosition]).addClass("player").css("animation-name", "slideInUp").removeClass('empty');
         $('#slide').get(0).play();
         setTimeout(function() { $($("li")[game.currentPosition]).css("animation-name", "pulse")}, 1000);
@@ -238,7 +250,7 @@ game.playerMove = function(){
       game.moveCounter++;
       game.computerMove();
     }
-    ///////// DOWN
+    ///////// DOWN       bottom : [30,31,32,33,34,35],
   } else if (e.which === 40) {
     $($("li")[game.currentPosition]).removeClass("player");
     game.currentPosition+=game.width;
@@ -247,7 +259,11 @@ game.playerMove = function(){
       console.log("You can't walk here!");
       game.currentPosition-=game.width;
       $($("li")[game.currentPosition]).addClass("player").removeClass("empty");
-    } else {
+    } else if ($($("li")[game.currentPosition]) > $("li")[35]) {
+      console.log("You can't walk here!");
+      game.currentPosition-=game.width;
+      $($("li")[game.currentPosition]).addClass("player").removeClass("empty");
+   } else {
       $($("li")[game.currentPosition]).addClass("player").css("animation-name", "slideInDown").removeClass('empty');
       $('#slide').get(0).play();
       setTimeout(function() { $($("li")[game.currentPosition]).css("animation-name", "pulse")}, 1000);
@@ -277,7 +293,7 @@ game.playerMove = function(){
 });
 }
 
-// Lose conditions
+//////// Lose conditions
 game.detection = function(i){
   for (i = 0; i < 15; i++) {
     var compRight = $('.computer'+i+'-right').attr('id');
@@ -315,7 +331,7 @@ game.detection = function(i){
   }
 }
 
-////// Check for a win
+////////// Check for a win
 game.checkForWin = function(){
   if ($(".exit").hasClass("player")) {
     $($("li").addClass("won").css("animation-name", "pulse"));
@@ -330,12 +346,12 @@ game.checkForWin = function(){
   }
 }
 
-///// Check for level number
+//////// Check for level number
 game.checkForLevel = function(){
   game.level = game.levels[game.levelNumber];
 }
 
-//// Clear board
+//////// Clear board
 game.clearBoard = function() {
   $('.grid').remove();
 }
