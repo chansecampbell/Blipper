@@ -168,10 +168,11 @@ li {
 .computer12-right,
 .computer13-right,
 .computer14-right {
-  background-image: url('https://cdn1.iconfinder.com/data/icons/general-9/500/left_arrow-128.png');
+  background-image: url('../images/right.png');
   background-size: cover;
-  -webkit-transform: rotate(180deg);
-}
+
+/*  -webkit-transform: rotate(180deg);
+*/}
 
 .computer1-left,
 .computer2-left,
@@ -187,7 +188,7 @@ li {
 .computer12-left,
 .computer13-left,
 .computer14-left {
-  background-image: url('https://cdn1.iconfinder.com/data/icons/general-9/500/left_arrow-128.png');
+  background-image: url('../images/left.png');
   background-size: cover;
 }
 
@@ -205,10 +206,10 @@ li {
 .computer12-up,
 .computer13-up,
 .computer14-up {
-  background-image: url('https://cdn1.iconfinder.com/data/icons/general-9/500/left_arrow-128.png');
+  background-image: url('../images/up.png');
   background-size: cover;
-  -webkit-transform: rotate(90deg);
-}
+/*  -webkit-transform: rotate(90deg);
+*/}
 
 .computer1-down,
 .computer2-down,
@@ -224,10 +225,10 @@ li {
 .computer12-down,
 .computer13-down,
 .computer14-down {
- background-image: url('https://cdn1.iconfinder.com/data/icons/general-9/500/left_arrow-128.png');
- background-size: cover;
- -webkit-transform: rotate(270deg);
-}
+  background-image: url('../images/down.png');
+  background-size: cover;
+/* -webkit-transform: rotate(270deg);
+*/}
 
 
 @-webkit-keyframes slideInDown {
@@ -522,6 +523,11 @@ li {
   #right {
     display: none;
   }
+
+/*  .restart {
+    display: all;
+  }*/
+
   h3 {
     display: none;
   }
@@ -532,17 +538,19 @@ li {
   }
 }
 
-@media only screen and (max-width: 960px) {
-
-  ul {
-    width: 600px;
-    height: 600px;
+@media only screen and (min-width: 760px) and (max-width: 1200px) {
+  button {
+    margin-left: 10%;
   }
 
-  li {
-    width: 98px;
-    height: 98px;
-  }
+}
+
+@media only screen and (max-width: 760px) {
+
+ button {
+   margin-left: 10%;
+   width: 500px;
+ }
 
 }
 

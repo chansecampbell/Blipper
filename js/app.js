@@ -98,7 +98,7 @@ game.levels = [
       fourteen: 23
     },
     player: 35,
-    exit: 11,
+    exit: 5,
     round: 5,
     bestScore: 14   
   }
@@ -258,7 +258,7 @@ game.playerMove = function(){
       console.log("You can't walk here!");
       game.currentPosition-=game.width;
       $($("li")[game.currentPosition]).addClass("player").removeClass("empty");
-    } 
+    }  
    //  else if ($($("li")[game.currentPosition]) > $("li")[35]) {
    //    console.log("You can't walk here!");
    //    game.currentPosition-=game.width;
