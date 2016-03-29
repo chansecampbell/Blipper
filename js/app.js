@@ -118,6 +118,7 @@ game.levels = [
     game.gameBoard();
     $("#restart" ).on("click", function(){
       game.clearBoard();
+      $('#theme').get(0).play();
       game.gameBoard();
       game.moveCounter = 0;
       $("#score").html(game.moveCounter);
@@ -374,6 +375,7 @@ game.checkForWin = function(){
     } else {
       game.levelNumber++;
       alert("Target eliminated! Click OK to continue.");
+      $('#theme').get(0).play();
       game.start();
     }
   }
