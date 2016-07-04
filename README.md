@@ -1,5 +1,7 @@
 # Blipper
-**Blipper** is a one player game *inspired* by the mobile game **Hitman Go** by Square Enix. It was built as my **first project** on the *Web Development Immersive* course at **General Assembly** using **JavaScript**. A hosted version of **Blipper** can be found [**here**](http://blippergame.herokuapp.com/).
+**Blipper** is a one player game *inspired* by the mobile game **Hitman Go** by Square Enix. It was built as my **first project** on the *Web Development Immersive* course at **General Assembly** using vainlla **JavaScript** & a little **jQuery** in only 4 days.
+
+A hosted version of **Blipper** can be found [**here**](http://blippergame.herokuapp.com/).
 
 ![alt text](http://i653.photobucket.com/albums/uu259/sheree1967/sheree1967037/blipperstartscreen_zpsezwval6q.png "Blipper Starting Screen")
 
@@ -18,12 +20,12 @@ Players may also restart to try and beat the level in the lowest amount of moves
 3. Built the game using *object orientated programming* if possible.
 
 # How it was built
-Blipper was built with **HTML/CSS** and **Javascript**, it also utilised the following librairies:
+Blipper was built with **HTML/CSS** and **Javascript**, it also utilised the following libraries:
 - [**jQuery**](https://jquery.com/download/)
 - [**Animate.css**](https://daneden.github.io/animate.css/)
 
 # Credits
 - [**Hitman Go**](https://play.google.com/store/apps/details?id=com.squareenixmontreal.hitmango&hl=en)
-- [**Sounds**](http://www.freesfx.co.uk/)
+- [**Free SFX Sounds**](http://www.freesfx.co.uk/)
 - **GA Instructors & TA's**: Alex, Caroline & Ollie.
 
